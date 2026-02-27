@@ -91,6 +91,15 @@
       const tabs=[...document.querySelectorAll('.tab')];
 
       const imageUrl=(q)=>`https://source.unsplash.com/featured/640x420?${encodeURIComponent(q+' sport action photo')}`;
+      const REAL_IMAGE_OVERRIDES={
+        'Fussball':'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=80',
+        'Yoga':'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80',
+        'Schwimmen':'https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=1200&q=80',
+        'Tennis':'https://images.unsplash.com/photo-1595435742656-5272d0b3fa1d?auto=format&fit=crop&w=1200&q=80',
+        'Basketball':'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80',
+        'Radfahren':'https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=1200&q=80',
+      };
+      function imageForSport(s){ return REAL_IMAGE_OVERRIDES[s.name] || imageUrl(s.query); }
 
       function setView(v){st.view=v;Object.entries(views).forEach(([k,el])=>el.hidden=k!==v);tabs.forEach(b=>b.classList.toggle('active',b.dataset.view===v));render();}
 
@@ -101,15 +110,18 @@
       }
             function calc(){ const r=SPORTS.map(s=>({...s,score:score(s)})).sort((a,b)=>b.score-a.score); st.result=r[0]; }
 
-      function card(s){return `<article class="sport"><div class="thumb"><img src="${imageUrl(s.query)}" alt="${s.name}" loading="lazy"></div><div class="body"><div class="name">${s.name}</div><div class="tags">${s.tags.join(' · ')}</div></div></article>`;}
+      function card(s){return `<article class="sport"><div class="thumb"><img src="${imageForSport(s)}" alt="${s.name}" loading="lazy"></div><div class="body"><div class="name">${s.name}</div><div class="tags">${s.tags.join(' · ')}</div></div></article>`;}
 
-      function renderHome(){homeView.innerHTML=`<div class="hero"><h1>Finde dein perfektes Hobby!</h1><div style="margin-top:6px;opacity:.92">SportMate hilft dir ohne Fitness-Druck die passende Sportart zu finden.</div><div class="sp"></div><div class="row"><button class="btn primary" data-go="quiz">Quiz starten</button><button class="btn ghost" data-go="directory">Alle Sportarten</button></div></div><div class="sp"></div><div class="card"><h3>So funktioniert's</h3><div class="muted" style="margin-top:6px">• 10 Fragen beantworten<br>• Persönliches Ergebnis erhalten<br>• Aus 60 Sportarten mit echten Bildern wählen</div></div>`}
+      function renderHome(){
+        const sample=SPORTS.find(s=>s.name==='Fussball')||SPORTS[0];
+        homeView.innerHTML=`<div class="hero"><h1>Finde dein perfektes Hobby!</h1><div style="margin-top:6px;opacity:.92">SportMate hilft dir ohne Fitness-Druck die passende Sportart zu finden.</div><div class="sp"></div><div class="row"><button class="btn primary" data-go="quiz">Quiz starten</button><button class="btn ghost" data-go="directory">Alle Sportarten</button></div></div><div class="sp"></div><div class="card"><h3>So funktioniert's</h3><div class="muted" style="margin-top:6px">• 10 Fragen beantworten<br>• Persönliches Ergebnis erhalten<br>• Aus 60 Sportarten mit echten Bildern wählen</div></div><div class="sp"></div><div class="card"><div class="row"><h3>Beispiel mit echtem Bild</h3><span class="muted">${sample.name}</span></div><div class="sp"></div><div class="sport"><div class="thumb"><img src="${imageForSport(sample)}" alt="${sample.name}" loading="lazy"></div><div class="body"><div class="name">${sample.name}</div><div class="tags">${sample.tags.join(' · ')}</div></div></div></div>`
+      }
 
       function renderQuiz(){const q=QUESTIONS[st.step];const p=((st.step+1)/QUESTIONS.length)*100;quizView.innerHTML=`<div class="card"><div class="row"><h2>Quiz · Frage ${st.step+1}/10</h2><span class="muted">Hobby-Match</span></div><div class="muted" style="margin-top:4px">${q.q}</div><div class="progress"><div style="width:${p}%"></div></div><div class="chips">${q.o.map(([l,v])=>`<button class="chip ${st.answers[q.k]===v?'on':''}" data-a="${v}">${l}</button>`).join('')}</div><div class="sp"></div><div class="row"><button class="btn ghost" ${st.step===0?'disabled':''} data-back="1">Zurück</button><button class="btn primary" data-next="1">${st.step===9?'Ergebnis':'Weiter'}</button></div></div>`}
 
       function renderDir(){const q=st.query.toLowerCase().trim();const list=SPORTS.filter(s=>!q||s.name.toLowerCase().includes(q)||s.tags.join(' ').includes(q));directoryView.innerHTML=`<div class="card"><div class="row"><h2>Sportarten Verzeichnis</h2><span class="muted">${list.length} von ${SPORTS.length}</span></div><div class="sp"></div><input class="search" value="${st.query}" placeholder="Suche Sportart / Tag" /></div><div class="sp"></div><div class="grid">${list.map(card).join('')}</div>`;directoryView.querySelector('.search').addEventListener('input',e=>{st.query=e.target.value;renderDir();});}
 
-      function renderResult(){if(!st.result){resultView.innerHTML=`<div class="card"><h2>Noch kein Ergebnis</h2><div class="muted" style="margin-top:6px">Bitte zuerst das Quiz abschließen.</div><div class="sp"></div><button class="btn primary" data-go="quiz">Zum Quiz</button></div>`;return;} const best=st.result; const alt=SPORTS.filter(s=>s.id!==best.id).sort((a,b)=>score(b)-score(a)).slice(0,4); resultView.innerHTML=`<div class="card"><h2>Dein bestes Match</h2><div class="muted" style="margin-top:4px">Ermittelt aus 10 Fragen</div><div class="sp"></div><div class="resultHero"><div class="thumb"><img src="${imageUrl(best.query)}" alt="${best.name}"></div></div><div class="sp"></div><h3>${best.name}</h3><div class="muted">${best.tags.join(' · ')}</div><div class="sp"></div><div class="row"><button class="btn ghost" data-restart="1">Quiz neu</button><button class="btn primary" data-go="directory">Verzeichnis</button></div></div><div class="sp"></div><div class="grid">${alt.map(card).join('')}</div>`;}
+      function renderResult(){if(!st.result){resultView.innerHTML=`<div class="card"><h2>Noch kein Ergebnis</h2><div class="muted" style="margin-top:6px">Bitte zuerst das Quiz abschließen.</div><div class="sp"></div><button class="btn primary" data-go="quiz">Zum Quiz</button></div>`;return;} const best=st.result; const alt=SPORTS.filter(s=>s.id!==best.id).sort((a,b)=>score(b)-score(a)).slice(0,4); resultView.innerHTML=`<div class="card"><h2>Dein bestes Match</h2><div class="muted" style="margin-top:4px">Ermittelt aus 10 Fragen</div><div class="sp"></div><div class="resultHero"><div class="thumb"><img src="${imageForSport(best)}" alt="${best.name}"></div></div><div class="sp"></div><h3>${best.name}</h3><div class="muted">${best.tags.join(' · ')}</div><div class="sp"></div><div class="row"><button class="btn ghost" data-restart="1">Quiz neu</button><button class="btn primary" data-go="directory">Verzeichnis</button></div></div><div class="sp"></div><div class="grid">${alt.map(card).join('')}</div>`;}
 
       function render(){ if(st.view==='home') renderHome(); if(st.view==='quiz') renderQuiz(); if(st.view==='directory') renderDir(); if(st.view==='result') renderResult(); }
 
