@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowly – Welcome Mock</title>
+  <style>
+    :root{--bg:#eceff4;--frame:#1f2430;--screen:#fafbff;--text:#22314f;--muted:#707b91;--blue:#5f8ff5;--blue2:#4c7de9}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--text)}
+
+    .phone{width:284px;background:var(--frame);border-radius:36px;padding:5px;box-shadow:0 18px 46px rgba(15,23,42,.34)}
+    .screen{height:574px;background:var(--screen);border-radius:32px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.25)}
+
+    .status{height:28px;padding:7px 14px 0;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;color:#111827}
+    .island{position:absolute;top:4px;left:50%;transform:translateX(-50%);width:106px;height:24px;border-radius:16px;background:#0b1018}
+
+    .wrap{padding:12px 14px 0;text-align:center}
+    .brand{margin-top:2px;font-size:42px;line-height:1;font-weight:800;letter-spacing:-.02em;color:#2d3b60;font-style:italic;font-family:"Trebuchet MS",Inter,system-ui,sans-serif}
+    .headline{margin:20px 0 0;font-size:48px;line-height:1.15;font-weight:800;letter-spacing:-.012em}
+    .sub{margin-top:12px;font-size:36px;line-height:1.15;color:var(--muted);font-weight:500}
+
+    .segment{margin:16px auto 0;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #d8deea;border-radius:20px;overflow:hidden;background:#f2f4f8}
+    .segment span{padding:10px 0;font-size:24px;line-height:1;font-weight:500;color:#4a556b;border-right:1px solid #d8deea}
+    .segment span:last-child{border-right:0}
+    .segment .on{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#fff;font-weight:700}
+
+    .hero{position:relative;height:216px;margin-top:16px}
+    .blob{position:absolute;border-radius:50%;opacity:.46}
+    .b1{width:88px;height:58px;left:-8px;top:28px;background:#f6c5d4}
+    .b2{width:92px;height:64px;right:-6px;top:24px;background:#d3e8ff}
+    .b3{width:102px;height:72px;right:2px;bottom:22px;background:#cceee2}
+    .b4{width:86px;height:62px;left:8px;bottom:28px;background:#efd8f7}
+    .b5{width:166px;height:34px;left:50%;bottom:12px;transform:translateX(-50%);background:#f2daca;opacity:.92}
+
+    .bubble{position:absolute;font-size:32px;opacity:.78}
+    .heart{left:30px;top:38px}.dumbbell{right:28px;top:34px}.lotus{left:25px;bottom:40px}.mountain{right:28px;bottom:36px}
+
+    .pear{position:absolute;left:50%;top:34px;transform:translateX(-50%);width:130px;height:160px;filter:drop-shadow(0 10px 12px rgba(31,41,55,.24))}
+
+    .ready{margin-top:-4px;font-size:42px;font-weight:800;letter-spacing:-.01em}
+    .cta{margin-top:12px;width:100%;border:0;border-radius:18px;padding:13px 12px;font-size:40px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--blue),var(--blue2));box-shadow:0 10px 22px rgba(79,130,241,.35)}
+
+    .down{position:absolute;left:50%;bottom:56px;transform:translateX(-50%);width:56px;height:56px;border-radius:50%;border:2px solid #d7dce8;background:#fff;display:grid;place-items:center;font-size:28px;color:#2e3544;box-shadow:0 8px 18px rgba(15,23,42,.12)}
+
+    .tabbar{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #d9dfeb;height:70px;display:grid;grid-template-columns:repeat(4,1fr);padding:6px 10px}
+    .tab{display:grid;justify-items:center;align-content:center;gap:1px;font-size:11px;color:#8a93a4;font-weight:600}
+    .tab .ico{font-size:19px;line-height:1}.tab.on{color:#4f82f1}
+  </style>
+</head>
+<body>
+  <main class="phone" aria-label="Flowly Welcome Preview">
+    <section class="screen">
+      <div class="island"></div>
+      <div class="status"><span>9:41</span><span>◔◔ ◼︎</span></div>
+      <div class="wrap">
+        <div class="brand">Flowly</div>
+        <h1 class="headline">Willkommen<br>bei Flowly!</h1>
+        <div class="sub">Wie fühlst du dich aktuell?</div>
+        <div class="segment" aria-label="Stimmung wählen"><span class="on">Social</span><span>Ruhe</span><span>Natur</span><span>Fit</span></div>
+
+        <div class="hero" aria-hidden="true">
+          <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><div class="blob b5"></div>
+          <div class="bubble heart">💗</div><div class="bubble dumbbell">🏋️‍♂️</div><div class="bubble lotus">🪷</div><div class="bubble mountain">⛰️</div>
+          <svg class="pear" viewBox="0 0 140 178" xmlns="http://www.w3.org/2000/svg" aria-label="Flowly Birne">
+            <path d="M76 26c2-11 12-20 24-22" stroke="#6b493b" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <ellipse cx="63" cy="34" rx="17" ry="10" fill="#89c540" transform="rotate(-8 63 34)"/>
+            <radialGradient id="g" cx="45%" cy="30%" r="60%"><stop offset="0" stop-color="#f2f8a8"/><stop offset="0.55" stop-color="#b7dd59"/><stop offset="1" stop-color="#65a746"/></radialGradient>
+            <path d="M70 40c-27 0-46 21-46 52 0 29 18 54 46 54s46-25 46-54c0-31-19-52-46-52z" fill="url(#g)"/>
+            <ellipse cx="54" cy="88" rx="4" ry="5" fill="#1f2937"/><ellipse cx="84" cy="88" rx="4" ry="5" fill="#1f2937"/>
+            <path d="M58 104c3 4 6.5 6 11 6 4.5 0 8-2 11-6" stroke="#1f2937" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <ellipse cx="44" cy="98" rx="4" ry="2" fill="#e8f1b5" opacity=".55"/><ellipse cx="96" cy="98" rx="4" ry="2" fill="#e8f1b5" opacity=".55"/>
+          </svg>
+        </div>
+
+        <div class="ready">Bereit! Los gehts!</div>
+        <button class="cta">Los geht's!</button>
+      </div>
+
+      <div class="down">↓</div>
+      <nav class="tabbar" aria-label="Bottom Navigation">
+        <div class="tab on"><div class="ico">🏠</div><div>Start</div></div>
+        <div class="tab"><div class="ico">🩶</div><div>Entdecken</div></div>
+        <div class="tab"><div class="ico">❤️</div><div>Favoriten</div></div>
+        <div class="tab"><div class="ico">👤</div><div>Profil</div></div>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>
