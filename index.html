@@ -3,50 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SportMate – Design Preview</title>
+  <title>SportMate – Referenznah</title>
   <style>
-    :root{--bg:#e9e9ea;--frame:#2f3540;--screen:#f8fafc;--line:#e2e8f0;--text:#0f172a;--muted:#64748b;--blue:#3b82f6}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text)}
-    .wrap{min-height:100vh;display:grid;place-items:center;padding:28px}
-    .row{display:grid;grid-template-columns:repeat(4,minmax(170px,190px));gap:18px}
-    .phone{background:var(--frame);border-radius:28px;padding:6px;box-shadow:0 8px 22px rgba(15,23,42,.2)}
-    .screen{background:#fff;border-radius:23px;overflow:hidden;position:relative;min-height:370px}
-    .notch{height:18px;display:flex;align-items:center;justify-content:space-between;padding:4px 10px 0;color:#111827;font-size:8px}
-    .notch .cam{width:40px;height:6px;border-radius:99px;background:#111827;opacity:.85}
-    .content{padding:10px}
-    .title{font-weight:900;letter-spacing:-.02em;text-align:center;color:#334155;font-size:12px}
-    .h{font-weight:800;font-size:12px;margin:8px 0 6px}
-    .muted{color:var(--muted);font-size:9px}
-    .chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px}
-    .chip{border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:3px 6px;font-size:8px;font-weight:700;color:#334155}
-    .chip.on{background:#dbeafe;border-color:#93c5fd;color:#1d4ed8}
-    .btn{border:0;background:linear-gradient(180deg,#3b82f6,#2563eb);color:#fff;border-radius:7px;padding:6px 8px;font-size:10px;font-weight:800;width:100%;margin-top:7px}
-    .pearWrap{margin:8px auto 0;display:grid;place-items:center}.pearShadow{width:64px;height:12px;border-radius:999px;background:radial-gradient(ellipse at center,rgba(15,23,42,.22),rgba(15,23,42,0));transform:translateY(4px)}
-    .pear{width:56px;height:56px;display:grid;place-items:center}
+    :root{--bg:#e7e7e8;--frame:#323842;--line:#d8dee8;--text:#0f172a;--muted:#64748b;--blue:#3b82f6}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text)}
+    .canvas{min-height:100vh;display:grid;place-items:center;padding:20px}
+    .phones{display:grid;grid-template-columns:repeat(4,176px);gap:18px}
+    .phone{background:var(--frame);border-radius:30px;padding:5px;box-shadow:0 12px 28px rgba(15,23,42,.24)}
+    .screen{background:#fff;border-radius:24px;overflow:hidden;position:relative;height:380px}
+    .status{height:18px;display:flex;justify-content:space-between;align-items:center;padding:4px 10px 0;font-size:8px;color:#111827}
+    .island{width:42px;height:6px;border-radius:999px;background:#111827}
+    .content{padding:8px}
+    .title{font-weight:800;text-align:center;color:#334155;font-size:12px}
+    .h{font-size:12px;font-weight:900;margin-top:8px}
+    .muted{font-size:8px;color:var(--muted)}
+    .chips{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+    .chip{padding:3px 6px;border:1px solid #d3dbe8;border-radius:999px;font-size:7px;font-weight:700;color:#475569;background:#fff}
+    .chip.on{background:#dbeafe;color:#1d4ed8;border-color:#93c5fd}
+    .btn{width:100%;border:0;border-radius:8px;padding:6px;font-size:10px;font-weight:800;color:#fff;background:linear-gradient(180deg,#4f8dff,#2563eb);margin-top:8px}
+    .pearWrap{display:grid;place-items:center;margin:8px auto 2px}
+    .pearShadow{width:64px;height:12px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(15,23,42,.25),rgba(15,23,42,0));transform:translateY(4px)}
     .pear svg{width:56px;height:56px}
-    .card{border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:#fff;margin-top:7px}
+    .card{margin-top:6px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:#fff}
     .thumb{height:58px;background-size:cover;background-position:center}
-    .meta{padding:6px}.meta .n{font-size:9px;font-weight:800}.meta .s{font-size:8px;color:#64748b}
+    .meta{padding:5px}.n{font-size:9px;font-weight:800}.s{font-size:8px;color:#64748b}
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
     .hero{height:96px;background-size:cover;background-position:center}
-    .list{padding-left:14px;margin:6px 0;font-size:8px}
+    .list{margin:6px 0;padding-left:14px;font-size:8px}
     .tabbar{position:absolute;left:6px;right:6px;bottom:6px;border:1px solid var(--line);border-radius:12px;background:#f8fafc;padding:4px;display:flex;gap:2px}
     .tab{flex:1;text-align:center;font-size:7px;font-weight:700;color:#64748b;padding:4px 2px;border-radius:8px}
     .tab.on{background:#dbeafe;color:#1d4ed8}
-    @media (max-width:900px){.row{grid-template-columns:repeat(2,minmax(170px,190px))}}
+    @media (max-width:900px){.phones{grid-template-columns:repeat(2,176px)}}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="row">
-      <article class="phone"><div class="screen"><div class="notch"><span>9:41</span><div class="cam"></div><span>◔◔</span></div><div class="content"><div class="title">Sport Mate</div><div class="h">Finde dein perfektes Hobby!</div><div class="muted">Was ist deine aktuelle Stimmung?</div><div class="chips"><span class="chip on">Social</span><span class="chip">Spaß</span><span class="chip">Ruhig</span><span class="chip">Natur</span></div><div class="muted" style="margin-top:8px;text-align:center">Bereit? Los geht's!</div><div class="pearWrap"><div class="pear"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M38 9c-2 4-6 6-9 6-2 0-4-.5-6-1.4 3-3.3 7-6.2 12-7.2 2-.4 4 .5 3 2.6z" fill="#16A34A"/><path d="M35 12c2-6 8-10 14-11" stroke="#166534" stroke-width="2.8" stroke-linecap="round"/><path d="M32 17c-8.2 0-14.2 6.2-14.2 15.2 0 2 .4 3.8 1.1 5.8-4 3-6.1 7-6.1 11.8C12.8 60 21 68 32 68s19.2-8 19.2-18.2c0-4.8-2.1-8.8-6.1-11.8.7-2 1.1-3.8 1.1-5.8C46.2 23.2 40.2 17 32 17z" fill="#A3E635" stroke="#3F6212" stroke-width="2" transform="translate(0 -4)"/><ellipse cx="25" cy="31" rx="3" ry="3.5" fill="#1f2937"/><ellipse cx="38.5" cy="31" rx="3" ry="3.5" fill="#1f2937"/><path d="M26 40c2 2.2 4 3.2 6.5 3.2 2.6 0 4.7-1 6.5-3.2" stroke="#1f2937" stroke-width="2.4" stroke-linecap="round"/></svg></div><div class="pearShadow"></div></div><button class="btn">Weiter</button></div><div class="tabbar"><div class="tab on">Entdecken</div><div class="tab">Favoriten</div><div class="tab">Quiz</div><div class="tab">Profil</div></div></div></article>
+<div class="canvas">
+  <div class="phones">
+    <article class="phone"><div class="screen"><div class="status"><span>9:41</span><div class="island"></div><span>◔◔</span></div><div class="content"><div class="title">Sport Mate</div><div class="h">Finde dein perfektes Hobby!</div><div class="muted" style="margin-top:6px">Was ist deine aktuelle Stimmung?</div><div class="chips"><span class="chip on">Social</span><span class="chip">Spaß</span><span class="chip">Ruhig</span><span class="chip">Natur</span></div><div class="muted" style="text-align:center;margin-top:8px">Bereit? Los geht's!</div><div class="pearWrap"><div class="pear"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M38 9c-2 4-6 6-9 6-2 0-4-.5-6-1.4 3-3.3 7-6.2 12-7.2 2-.4 4 .5 3 2.6z" fill="#16A34A"/><path d="M35 12c2-6 8-10 14-11" stroke="#166534" stroke-width="2.8" stroke-linecap="round"/><path d="M32 17c-8.2 0-14.2 6.2-14.2 15.2 0 2 .4 3.8 1.1 5.8-4 3-6.1 7-6.1 11.8C12.8 60 21 68 32 68s19.2-8 19.2-18.2c0-4.8-2.1-8.8-6.1-11.8.7-2 1.1-3.8 1.1-5.8C46.2 23.2 40.2 17 32 17z" fill="#A3E635" stroke="#3F6212" stroke-width="2" transform="translate(0 -4)"/><ellipse cx="25" cy="31" rx="3" ry="3.5" fill="#1f2937"/><ellipse cx="38.5" cy="31" rx="3" ry="3.5" fill="#1f2937"/><path d="M26 40c2 2.2 4 3.2 6.5 3.2 2.6 0 4.7-1 6.5-3.2" stroke="#1f2937" stroke-width="2.4" stroke-linecap="round"/></svg></div><div class="pearShadow"></div></div><button class="btn">Weiter</button></div><div class="tabbar"><div class="tab on">Entdecken</div><div class="tab">Favoriten</div><div class="tab">Quiz</div><div class="tab">Profil</div></div></div></article>
 
-      <article class="phone"><div class="screen"><div class="notch"><span>9:41</span><div class="cam"></div><span>◔◔</span></div><div class="content"><div class="h" style="text-align:center">Entdecke Ideen für dich</div><div class="chips"><span class="chip on">Für dich</span><span class="chip">Beliebt</span><span class="chip">Low impact</span></div><div class="muted" style="margin-top:6px;font-weight:700">Aktive Stimmung: Social</div><div class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Volleyball</div><div class="s">Team Sport</div></div></div><div class="grid2"><div class="card"><div class="thumb" style="height:50px;background-image:url('https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Fussball</div><div class="s">Team Sport</div></div></div><div class="card"><div class="thumb" style="height:50px;background-image:url('https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Tanzen</div><div class="s">Dynamisch</div></div></div></div></div><div class="tabbar"><div class="tab on">Entdecken</div><div class="tab">Favoriten</div><div class="tab">Quiz</div><div class="tab">Profil</div></div></div></article>
+    <article class="phone"><div class="screen"><div class="status"><span>9:41</span><div class="island"></div><span>◔◔</span></div><div class="content"><div class="h" style="text-align:center">Entdecke Ideen für dich</div><div class="chips"><span class="chip on">Für dich</span><span class="chip">Beliebt</span><span class="chip">Low impact</span></div><div class="muted" style="margin-top:6px;font-weight:700">Aktive Stimmung: Social</div><div class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Volleyball</div><div class="s">Team Sport</div></div></div><div class="grid2"><div class="card"><div class="thumb" style="height:50px;background-image:url('https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Fussball</div><div class="s">Team Sport</div></div></div><div class="card"><div class="thumb" style="height:50px;background-image:url('https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Tanzen</div><div class="s">Dynamisch</div></div></div></div></div><div class="tabbar"><div class="tab on">Entdecken</div><div class="tab">Favoriten</div><div class="tab">Quiz</div><div class="tab">Profil</div></div></div></article>
 
-      <article class="phone"><div class="screen"><div class="notch"><span>9:41</span><div class="cam"></div><span>◔◔</span></div><div class="content"><div class="h" style="text-align:center">Deine Ergebnisse</div><div class="muted">Du passt perfekt zu:</div><div class="card" style="margin-top:6px"><div class="thumb" style="height:78px;background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n" style="font-size:13px;color:#1d4ed8">Beachvolleyball</div><ul class="list"><li>Tolles Teamwork</li><li>Fit & aktiv an der frischen Luft</li><li>Perfekt im Sommer</li></ul><button class="btn">Details ansehen</button></div></div><div class="muted" style="margin-top:7px">Weitere Empfehlungen:</div><div class="grid2"><div class="card"><div class="thumb" style="height:48px;background-image:url('https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Kajak</div><div class="s">Outdoor</div></div></div><div class="card"><div class="thumb" style="height:48px;background-image:url('https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Badminton</div><div class="s">Sportlich</div></div></div></div></div></div></article>
+    <article class="phone"><div class="screen"><div class="status"><span>9:41</span><div class="island"></div><span>◔◔</span></div><div class="content"><div class="h" style="text-align:center">Deine Ergebnisse</div><div class="muted">Du passt perfekt zu:</div><div class="card" style="margin-top:6px"><div class="thumb" style="height:78px;background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n" style="font-size:13px;color:#1d4ed8">Beachvolleyball</div><ul class="list"><li>Tolles Teamwork</li><li>Fit & aktiv an der frischen Luft</li><li>Perfekt im Sommer</li></ul><button class="btn">Details ansehen</button></div></div><div class="muted" style="margin-top:7px">Weitere Empfehlungen:</div><div class="grid2"><div class="card"><div class="thumb" style="height:48px;background-image:url('https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Kajak</div><div class="s">Outdoor</div></div></div><div class="card"><div class="thumb" style="height:48px;background-image:url('https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Badminton</div><div class="s">Sportlich</div></div></div></div></div></div></article>
 
-      <article class="phone"><div class="screen"><div class="notch"><span>9:41</span><div class="cam"></div><span>◔◔</span></div><div class="hero" style="background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="content"><div class="h" style="font-size:14px">Beachvolleyball</div><div class="muted">Überblick</div><ul class="list" style="font-size:9px"><li>Art: Team Sport</li><li>Ort: Draußen</li><li>Intensität: Moderat</li><li>Kalorienverbrauch: ~400 kcal/Stunde</li><li>Toll für den Sommer</li></ul><button class="btn" style="margin-top:6px">❤️ Zu Favoriten hinzufügen</button></div></div></article>
-    </div>
+    <article class="phone"><div class="screen"><div class="status"><span>9:41</span><div class="island"></div><span>◔◔</span></div><div class="hero" style="background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="content"><div class="h" style="font-size:14px">Beachvolleyball</div><div class="muted">Überblick</div><ul class="list" style="font-size:9px"><li>Art: Team Sport</li><li>Ort: Draußen</li><li>Intensität: Moderat</li><li>Kalorienverbrauch: ~400 kcal/Stunde</li><li>Toll für den Sommer</li></ul><button class="btn" style="margin-top:6px">❤️ Zu Favoriten hinzufügen</button></div></div></article>
   </div>
+</div>
 </body>
 </html>
