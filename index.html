@@ -1,82 +1,51 @@
 <!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SportMate</title>
-    <style>
-      :root{--bg:#eef2ff;--card:#ffffff;--line:#e2e8f0;--text:#0f172a;--muted:#64748b;--b1:#2f6bff;--b2:#14b8a6}
-      *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:radial-gradient(900px 500px at -10% -20%,#93c5fd66,transparent),radial-gradient(900px 600px at 110% -10%,#5eead444,transparent),var(--bg);color:var(--text)}
-      .app{min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:20px}
-      .phone{width:min(430px,100%);background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:0 24px 44px rgba(15,23,42,.16)}
-      .top{padding:14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:#ffffffcc;backdrop-filter:blur(8px)}
-      .brand{font-weight:900;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
-      .pearLogo{width:28px;height:28px;border-radius:8px;background:#f8fafc;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
-      .icons{display:flex;gap:8px}.icon{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:#334155;font-size:14px}
-      .inner{padding:14px 14px 86px;position:relative;min-height:76vh}
-      .tabs{position:absolute;left:10px;right:10px;bottom:10px;background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:6px;display:flex;gap:4px}
-      .tab{flex:1;border:0;background:transparent;border-radius:11px;padding:8px 2px;font-size:11px;font-weight:800;color:#64748b;cursor:pointer}.tab.active{background:#dbeafe;color:#1d4ed8}
-      h1,h2,h3{margin:0;letter-spacing:-.02em}.muted{color:var(--muted);font-size:13px}.sp{height:10px}
-      .hero{border-radius:18px;padding:18px;color:#fff;background:linear-gradient(145deg,var(--b1),var(--b2));position:relative;overflow:hidden}
-      .hero:after{content:'';position:absolute;right:-35px;top:-30px;width:130px;height:130px;border-radius:999px;background:#fff3}
-      .btn{border:0;border-radius:12px;padding:10px 12px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(180deg,var(--b1),#2457d9);color:#fff}.ghost{background:#fff;border:1px solid var(--line);color:#334155}
-      .row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-      .card{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff}
-      .welcome{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff}
-      .welcomeHero{height:190px;position:relative}.welcomeHero img{width:100%;height:100%;object-fit:cover;display:block}
-      .welcomeBody{padding:14px}
-      .welcomePearCenter{margin:12px auto; width:74px; height:74px; border-radius:22px; background:#f8fafc; border:1px solid var(--line); display:grid; place-items:center}
-      .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.chip{border:1px solid var(--line);border-radius:999px;background:#fff;padding:7px 10px;font-size:12px;font-weight:700;cursor:pointer}.chip.on{background:#dbeafe;border-color:#93c5fd;color:#1d4ed8}
-      .progress{height:9px;border-radius:999px;background:#eaf0ff;border:1px solid var(--line);overflow:hidden;margin-top:10px}.progress>div{height:100%;background:linear-gradient(90deg,var(--b1),var(--b2))}
-      .search{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-weight:700}
-      .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sport{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}.thumb{height:110px;background:#e2e8f0}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.body{padding:9px}.name{font-weight:800;font-size:14px}.tags{font-size:11px;color:#64748b;margin-top:2px}
-      .resultHero{border:1px solid var(--line);border-radius:12px;overflow:hidden}.resultHero .thumb{height:170px}
-    </style>
-  </head>
-  <body>
-    <div class="app">
-      <div class="phone">
-        <div class="top"><div class="brand"><span class="pearLogo" aria-hidden><svg width="20" height="20" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37 10c-2 4-6 6-9 6-2 0-4-.5-6-1.5 3-3.5 7-6.5 12-7.5 2-.5 4 .5 3 3z" fill="#16A34A"/><path d="M35 13c2-6 8-10 14-11" stroke="#166534" stroke-width="3" stroke-linecap="round"/><path d="M32 18c-8 0-14 6-14 15 0 2 .4 4 1.1 6-4 3-6.1 7-6.1 12 0 10 8 18 19 18s19-8 19-18c0-5-2.1-9-6.1-12 .7-2 1.1-4 1.1-6 0-9-6-15-14-15z" fill="#34D399" stroke="#065F46" stroke-width="2"/><path d="M20 43c2-8 8-13 12-13" stroke="rgba(255,255,255,0.55)" stroke-width="4" stroke-linecap="round"/></svg></span><span>SportMate</span></div><div class="icons"><div class="icon">♡</div><div class="icon">⚙</div></div></div>
-        <div class="inner">
-          <section id="welcomeView"></section>
-          <section id="homeView" hidden></section>
-          <section id="quizView" hidden></section>
-          <section id="directoryView" hidden></section>
-          <section id="resultView" hidden></section>
-          <nav class="tabs">
-            <button class="tab active" data-view="welcome">Willkommen</button>
-            <button class="tab" data-view="home">Start</button>
-            <button class="tab" data-view="quiz">Quiz</button>
-            <button class="tab" data-view="directory">Sportarten</button>
-            <button class="tab" data-view="result">Ergebnis</button>
-          </nav>
-        </div>
-      </div>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportMate – Design Preview</title>
+  <style>
+    :root{--bg:#e9e9ea;--frame:#2f3540;--screen:#f8fafc;--line:#e2e8f0;--text:#0f172a;--muted:#64748b;--blue:#3b82f6}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text)}
+    .wrap{min-height:100vh;display:grid;place-items:center;padding:28px}
+    .row{display:grid;grid-template-columns:repeat(4,minmax(170px,190px));gap:18px}
+    .phone{background:var(--frame);border-radius:28px;padding:6px;box-shadow:0 8px 22px rgba(15,23,42,.2)}
+    .screen{background:#fff;border-radius:23px;overflow:hidden;position:relative;min-height:370px}
+    .notch{height:18px;display:flex;align-items:center;justify-content:space-between;padding:4px 10px 0;color:#111827;font-size:8px}
+    .notch .cam{width:40px;height:6px;border-radius:99px;background:#111827;opacity:.85}
+    .content{padding:10px}
+    .title{font-weight:900;letter-spacing:-.02em;text-align:center;color:#334155;font-size:12px}
+    .h{font-weight:800;font-size:12px;margin:8px 0 6px}
+    .muted{color:var(--muted);font-size:9px}
+    .chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px}
+    .chip{border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:3px 6px;font-size:8px;font-weight:700;color:#334155}
+    .chip.on{background:#dbeafe;border-color:#93c5fd;color:#1d4ed8}
+    .btn{border:0;background:linear-gradient(180deg,#3b82f6,#2563eb);color:#fff;border-radius:7px;padding:6px 8px;font-size:10px;font-weight:800;width:100%;margin-top:7px}
+    .pear{margin:8px auto;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,#ecfccb,#84cc16 72%)}
+    .pear svg{width:36px;height:36px}
+    .card{border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:#fff;margin-top:7px}
+    .thumb{height:58px;background-size:cover;background-position:center}
+    .meta{padding:6px}.meta .n{font-size:9px;font-weight:800}.meta .s{font-size:8px;color:#64748b}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .hero{height:96px;background-size:cover;background-position:center}
+    .list{padding-left:14px;margin:6px 0;font-size:8px}
+    .tabbar{position:absolute;left:6px;right:6px;bottom:6px;border:1px solid var(--line);border-radius:12px;background:#f8fafc;padding:4px;display:flex;gap:2px}
+    .tab{flex:1;text-align:center;font-size:7px;font-weight:700;color:#64748b;padding:4px 2px;border-radius:8px}
+    .tab.on{background:#dbeafe;color:#1d4ed8}
+    @media (max-width:900px){.row{grid-template-columns:repeat(2,minmax(170px,190px))}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="row">
+      <article class="phone"><div class="screen"><div class="notch"><span>9:41</span><div class="cam"></div><span>◔◔</span></div><div class="content"><div class="title">Sport Mate</div><div class="h">Finde dein perfektes Hobby!</div><div class="muted">Was ist deine aktuelle Stimmung?</div><div class="chips"><span class="chip on">Social</span><span class="chip">Spaß</span><span class="chip">Ruhig</span><span class="chip">Natur</span></div><div class="muted" style="margin-top:8px;text-align:center">Bereit? Los geht's!</div><div class="pear"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37 10c-2 4-6 6-9 6-2 0-4-.5-6-1.5 3-3.5 7-6.5 12-7.5 2-.5 4 .5 3 3z" fill="#16A34A"/><path d="M35 13c2-6 8-10 14-11" stroke="#166534" stroke-width="3" stroke-linecap="round"/><path d="M32 18c-8 0-14 6-14 15 0 2 .4 4 1.1 6-4 3-6.1 7-6.1 12 0 10 8 18 19 18s19-8 19-18c0-5-2.1-9-6.1-12 .7-2 1.1-4 1.1-6 0-9-6-15-14-15z" fill="#34D399" stroke="#065F46" stroke-width="2"/></svg></div><button class="btn">Weiter</button></div><div class="tabbar"><div class="tab on">Entdecken</div><div class="tab">Favoriten</div><div class="tab">Quiz</div><div class="tab">Profil</div></div></div></article>
 
-    <script>
-      const SPORTS=[['Yoga','yoga class'],['Pilates','pilates'],['Tai Chi','tai chi'],['Qigong','qigong'],['Spazieren','walking'],['Nordic Walking','nordic walking'],['Wandern','hiking'],['Schwimmen','swimming'],['Aquajogging','aqua jogging'],['SUP','stand up paddling'],['Kajak','kayaking'],['Rudern','rowing'],['Segeln','sailing'],['Tauchen','scuba diving'],['Tanzen','dance class'],['Zumba','zumba class'],['Salsa','salsa dance'],['Ballett','ballet class'],['Fussball','football'],['Basketball','basketball'],['Volleyball','volleyball'],['Beachvolleyball','beach volleyball'],['Handball','handball'],['Tennis','tennis'],['Badminton','badminton'],['Squash','squash'],['Tischtennis','table tennis'],['Padel','padel tennis'],['Radfahren','cycling'],['Mountainbike','mountain biking'],['Spinning','spinning class'],['Joggen','running'],['Trailrunning','trail running'],['Krafttraining','gym training'],['HIIT','hiit workout'],['Boxen','boxing'],['Judo','judo'],['Karate','karate'],['Bouldern','bouldering'],['Klettern Halle','indoor climbing'],['Klettern Outdoor','rock climbing'],['Skifahren','skiing'],['Snowboard','snowboarding'],['Langlauf','cross country skiing'],['Eislaufen','ice skating'],['Bowling','bowling'],['Billard','billiards'],['Darts','darts'],['Bogenschiessen','archery'],['Golf','golf'],['Inline Skating','inline skating'],['Skateboard','skateboard'],['Parkour','parkour'],['Slackline','slackline'],['Ultimate Frisbee','ultimate frisbee'],['Disc Golf','disc golf'],['Fechten','fencing'],['Geocaching','geocaching'],['Reiten','horse riding'],['Surfen','surfing']].map((x,i)=>({id:i+1,name:x[0],query:x[1],tags:inferTags(x[0],x[1]),image:`https://source.unsplash.com/featured/640x420?${encodeURIComponent(x[1]+' sport')}`}));
-      function inferTags(name,q){const s=(name+' '+q).toLowerCase();return [/swim|surf|padd|kayak|segel|tauch|aqua/.test(s)?'wasser':'',/hik|trail|geocach|reiten|golf|outdoor|ski|snow|walk|mountain/.test(s)?'natur':'',/fuss|basket|volley|hand|team|judo|zumba|salsa|ultimate/.test(s)?'team':'solo',/hiit|trail|parkour|box|squash|mountainbike/.test(s)?'high':/yoga|pilates|qigong|tai|golf|darts|billard/.test(s)?'low':'medium'].filter(Boolean)}
-      const QUESTIONS=[{q:'Was suchst du am meisten?',k:'goal',o:[['Entspannung','low'],['Spaß','team'],['Challenge','high'],['Natur','natur']]},{q:'Wo lieber?',k:'place',o:[['Outdoor','natur'],['Indoor','indoor'],['Egal','any']]},{q:'Solo oder Team?',k:'group',o:[['Solo','solo'],['Team','team'],['Beides','any']]},{q:'Intensität?',k:'intensity',o:[['Low','low'],['Medium','medium'],['High','high']]},{q:'Wasser-Sport?',k:'water',o:[['Ja','wasser'],['Egal','any'],['Nein','no_wasser']]},{q:'Budget?',k:'budget',o:[['Niedrig','low'],['Mittel','medium'],['Hoch ok','high']]},{q:'Ausrüstung?',k:'gear',o:[['Keine','easy'],['Basis','medium'],['Spezial ok','pro']]},{q:'Wie oft pro Woche?',k:'time',o:[['1x','low'],['2-3x','medium'],['4x+','high']]},{q:'Gesundheitsfokus?',k:'health',o:[['Schonend','low'],['Normal','any'],['Action ok','high']]},{q:'Wie schnell starten?',k:'start',o:[['Sofort einfach','easy'],['Lernen ok','pro'],['Egal','any']]}];
-      const st={view:'welcome',step:0,answers:{},result:null,query:''};
-      const views={welcome:welcomeView,home:homeView,quiz:quizView,directory:directoryView,result:resultView};
-      const tabs=[...document.querySelectorAll('.tab')];
-      const imageUrl=(q)=>`https://source.unsplash.com/featured/640x420?${encodeURIComponent(q+' sport action photo')}`;
-      const REAL_IMAGE_OVERRIDES={'Fussball':'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=80','Yoga':'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80','Schwimmen':'https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=1200&q=80','Tennis':'https://images.unsplash.com/photo-1595435742656-5272d0b3fa1d?auto=format&fit=crop&w=1200&q=80','Basketball':'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80','Radfahren':'https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=1200&q=80'};
-      function imageForSport(s){return s.image||REAL_IMAGE_OVERRIDES[s.name]||imageUrl(s.query)}
-      function fallbackImageForSport(s){return `https://loremflickr.com/640/420/${encodeURIComponent((s.query||'sport')+',sport')}`}
-      function setView(v){st.view=v;Object.entries(views).forEach(([k,el])=>el.hidden=k!==v);tabs.forEach(b=>b.classList.toggle('active',b.dataset.view===v));render()}
-      function score(s){let n=0;Object.values(st.answers).forEach(v=>{if(v==='any')return;if(v==='no_wasser'){if(s.tags.includes('wasser'))n-=4;return}if(s.tags.includes(v))n+=4});return n}
-      function calc(){st.result=SPORTS.map(s=>({...s,score:score(s)})).sort((a,b)=>b.score-a.score)[0]}
-      function card(s){return `<article class="sport"><div class="thumb"><img src="${imageForSport(s)}" alt="${s.name}" loading="lazy" data-fallback="${fallbackImageForSport(s)}" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.dataset.fallback='';}else{this.onerror=null;this.src='https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80';}"></div><div class="body"><div class="name">${s.name}</div><div class="tags">${s.tags.join(' · ')}</div></div></article>`}
-      function renderWelcome(){const hero='https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=80';const pear='<svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37 10c-2 4-6 6-9 6-2 0-4-.5-6-1.5 3-3.5 7-6.5 12-7.5 2-.5 4 .5 3 3z" fill="#16A34A"/><path d="M35 13c2-6 8-10 14-11" stroke="#166534" stroke-width="3" stroke-linecap="round"/><path d="M32 18c-8 0-14 6-14 15 0 2 .4 4 1.1 6-4 3-6.1 7-6.1 12 0 10 8 18 19 18s19-8 19-18c0-5-2.1-9-6.1-12 .7-2 1.1-4 1.1-6 0-9-6-15-14-15z" fill="#34D399" stroke="#065F46" stroke-width="2"/><path d="M20 43c2-8 8-13 12-13" stroke="rgba(255,255,255,0.55)" stroke-width="4" stroke-linecap="round"/></svg>';welcomeView.innerHTML=`<div class="welcome"><div class="welcomeHero"><img src="${hero}" alt="SportMate willkommen"></div><div class="welcomeBody"><h1>Willkommen bei SportMate</h1><div class="muted" style="margin-top:6px">Finde in wenigen Fragen dein passendes Sport-Hobby – ohne Fitnessdruck.</div><div class="welcomePearCenter" aria-hidden>${pear}</div><div class="sp"></div><div class="row"><button class="btn primary" data-go="home">Los geht's</button><button class="btn ghost" data-go="quiz">Direkt zum Quiz</button></div></div></div>`}
-      function renderHome(){const sample=SPORTS.find(s=>s.name==='Fussball')||SPORTS[0];homeView.innerHTML=`<div class="hero"><h1>Finde dein perfektes Hobby</h1><div style="margin-top:6px;opacity:.92">Modern, klar und ohne Leistungsdruck.</div><div class="sp"></div><div class="row"><button class="btn primary" data-go="quiz">Quiz starten</button><button class="btn ghost" data-go="directory">Alle Sportarten</button></div></div><div class="sp"></div><div class="card"><h3>So funktioniert's</h3><div class="muted" style="margin-top:6px">• 10 Fragen beantworten<br>• Persönliches Ergebnis erhalten<br>• 60 Sportarten mit Bildern entdecken</div></div><div class="sp"></div><div class="card"><div class="row"><h3>Beispiel</h3><span class="muted">${sample.name}</span></div><div class="sp"></div>${card(sample)}</div>`}
-      function renderQuiz(){const q=QUESTIONS[st.step];const p=((st.step+1)/QUESTIONS.length)*100;quizView.innerHTML=`<div class="card"><div class="row"><h2>Quiz · Frage ${st.step+1}/10</h2><span class="muted">Hobby-Match</span></div><div class="muted" style="margin-top:4px">${q.q}</div><div class="progress"><div style="width:${p}%"></div></div><div class="chips">${q.o.map(([l,v])=>`<button class="chip ${st.answers[q.k]===v?'on':''}" data-a="${v}">${l}</button>`).join('')}</div><div class="sp"></div><div class="row"><button class="btn ghost" ${st.step===0?'disabled':''} data-back="1">Zurück</button><button class="btn primary" data-next="1">${st.step===9?'Ergebnis':'Weiter'}</button></div></div>`}
-      function renderDir(){const q=st.query.toLowerCase().trim();const list=SPORTS.filter(s=>!q||s.name.toLowerCase().includes(q)||s.tags.join(' ').includes(q));directoryView.innerHTML=`<div class="card"><div class="row"><h2>Sportarten</h2><span class="muted">${list.length} von ${SPORTS.length}</span></div><div class="sp"></div><input class="search" value="${st.query}" placeholder="Suche Sportart / Tag" /></div><div class="sp"></div><div class="grid">${list.map(card).join('')}</div>`;directoryView.querySelector('.search').addEventListener('input',e=>{st.query=e.target.value;renderDir()})}
-      function renderResult(){if(!st.result){resultView.innerHTML=`<div class="card"><h2>Noch kein Ergebnis</h2><div class="muted" style="margin-top:6px">Bitte zuerst das Quiz abschließen.</div><div class="sp"></div><button class="btn primary" data-go="quiz">Zum Quiz</button></div>`;return}const best=st.result;const alt=SPORTS.filter(s=>s.id!==best.id).sort((a,b)=>score(b)-score(a)).slice(0,4);resultView.innerHTML=`<div class="card"><h2>Dein bestes Match</h2><div class="muted" style="margin-top:4px">Ermittelt aus 10 Fragen</div><div class="sp"></div><div class="resultHero"><div class="thumb"><img src="${imageForSport(best)}" alt="${best.name}" data-fallback="${fallbackImageForSport(best)}" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.dataset.fallback='';}else{this.onerror=null;this.src='https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80';}"></div></div><div class="sp"></div><h3>${best.name}</h3><div class="muted">${best.tags.join(' · ')}</div><div class="sp"></div><div class="row"><button class="btn ghost" data-restart="1">Quiz neu</button><button class="btn primary" data-go="directory">Verzeichnis</button></div></div><div class="sp"></div><div class="grid">${alt.map(card).join('')}</div>`}
-      function render(){if(st.view==='welcome')renderWelcome();if(st.view==='home')renderHome();if(st.view==='quiz')renderQuiz();if(st.view==='directory')renderDir();if(st.view==='result')renderResult()}
-      document.body.addEventListener('click',e=>{const t=e.target;if(!(t instanceof HTMLElement))return;const tb=t.closest('[data-view]');if(tb)return setView(tb.dataset.view);if(t.dataset.go)return setView(t.dataset.go);if(t.dataset.a){st.answers[QUESTIONS[st.step].k]=t.dataset.a;return renderQuiz()}if(t.dataset.back&&st.step>0){st.step--;return renderQuiz()}if(t.dataset.next){const k=QUESTIONS[st.step].k;if(!st.answers[k])return;if(st.step<9){st.step++;return renderQuiz()}calc();return setView('result')}if(t.dataset.restart){st.step=0;st.answers={};st.result=null;return setView('quiz')}})
-      setView('welcome')
-    </script>
-  </body>
+      <article class="phone"><div class="screen"><div class="notch"><span>9:41</span><div class="cam"></div><span>◔◔</span></div><div class="content"><div class="h" style="text-align:center">Entdecke Ideen für dich</div><div class="chips"><span class="chip on">Für dich</span><span class="chip">Beliebt</span><span class="chip">Low impact</span></div><div class="muted" style="margin-top:6px;font-weight:700">Aktive Stimmung: Social</div><div class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Volleyball</div><div class="s">Team Sport</div></div></div><div class="grid2"><div class="card"><div class="thumb" style="height:50px;background-image:url('https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Fussball</div><div class="s">Team Sport</div></div></div><div class="card"><div class="thumb" style="height:50px;background-image:url('https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Tanzen</div><div class="s">Dynamisch</div></div></div></div></div><div class="tabbar"><div class="tab on">Entdecken</div><div class="tab">Favoriten</div><div class="tab">Quiz</div><div class="tab">Profil</div></div></div></article>
+
+      <article class="phone"><div class="screen"><div class="notch"><span>9:41</span><div class="cam"></div><span>◔◔</span></div><div class="content"><div class="h" style="text-align:center">Deine Ergebnisse</div><div class="muted">Du passt perfekt zu:</div><div class="card" style="margin-top:6px"><div class="thumb" style="height:78px;background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n" style="font-size:13px;color:#1d4ed8">Beachvolleyball</div><ul class="list"><li>Tolles Teamwork</li><li>Fit & aktiv an der frischen Luft</li><li>Perfekt im Sommer</li></ul><button class="btn">Details ansehen</button></div></div><div class="muted" style="margin-top:7px">Weitere Empfehlungen:</div><div class="grid2"><div class="card"><div class="thumb" style="height:48px;background-image:url('https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Kajak</div><div class="s">Outdoor</div></div></div><div class="card"><div class="thumb" style="height:48px;background-image:url('https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Badminton</div><div class="s">Sportlich</div></div></div></div></div></div></article>
+
+      <article class="phone"><div class="screen"><div class="notch"><span>9:41</span><div class="cam"></div><span>◔◔</span></div><div class="hero" style="background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="content"><div class="h" style="font-size:14px">Beachvolleyball</div><div class="muted">Überblick</div><ul class="list" style="font-size:9px"><li>Art: Team Sport</li><li>Ort: Draußen</li><li>Intensität: Moderat</li><li>Kalorienverbrauch: ~400 kcal/Stunde</li><li>Toll für den Sommer</li></ul><button class="btn" style="margin-top:6px">❤️ Zu Favoriten hinzufügen</button></div></div></article>
+    </div>
+  </div>
+</body>
 </html>
