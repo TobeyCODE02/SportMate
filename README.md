@@ -1,4 +1,4 @@
-# SportMate
+# Flowly
 
 Projekt wurde auf Null zurückgesetzt.
 
