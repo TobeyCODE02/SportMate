@@ -3,51 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SportMate – Referenznah</title>
+  <title>SportMate – Welcome Mock</title>
   <style>
-    :root{--bg:#e7e7e8;--frame:#323842;--line:#d8dee8;--text:#0f172a;--muted:#64748b;--blue:#3b82f6}
+    :root{
+      --bg:#edf0f5;
+      --frame:#1f2530;
+      --screen:#f9fafc;
+      --text:#24324f;
+      --muted:#606c82;
+      --blue:#4f82f1;
+      --blue2:#3f73e8;
+      --chip:#eef1f6;
+    }
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text)}
-    .canvas{min-height:100vh;display:grid;place-items:center;padding:20px}
-    .phones{display:grid;grid-template-columns:repeat(4,176px);gap:18px}
-    .phone{background:var(--frame);border-radius:30px;padding:5px;box-shadow:0 12px 28px rgba(15,23,42,.24)}
-    .screen{background:#fff;border-radius:24px;overflow:hidden;position:relative;height:380px}
-    .status{height:18px;display:flex;justify-content:space-between;align-items:center;padding:4px 10px 0;font-size:8px;color:#111827}
-    .island{width:42px;height:6px;border-radius:999px;background:#111827}
-    .content{padding:8px}
-    .title{font-weight:800;text-align:center;color:#334155;font-size:12px}
-    .h{font-size:12px;font-weight:900;margin-top:8px}
-    .muted{font-size:8px;color:var(--muted)}
-    .chips{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
-    .chip{padding:3px 6px;border:1px solid #d3dbe8;border-radius:999px;font-size:7px;font-weight:700;color:#475569;background:#fff}
-    .chip.on{background:#dbeafe;color:#1d4ed8;border-color:#93c5fd}
-    .btn{width:100%;border:0;border-radius:8px;padding:6px;font-size:10px;font-weight:800;color:#fff;background:linear-gradient(180deg,#4f8dff,#2563eb);margin-top:8px}
-    .pearWrap{display:grid;place-items:center;margin:8px auto 2px}
-    .pearShadow{width:64px;height:12px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(15,23,42,.25),rgba(15,23,42,0));transform:translateY(4px)}
-    .pear svg{width:56px;height:56px}
-    .card{margin-top:6px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:#fff}
-    .thumb{height:58px;background-size:cover;background-position:center}
-    .meta{padding:5px}.n{font-size:9px;font-weight:800}.s{font-size:8px;color:#64748b}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-    .hero{height:96px;background-size:cover;background-position:center}
-    .list{margin:6px 0;padding-left:14px;font-size:8px}
-    .tabbar{position:absolute;left:6px;right:6px;bottom:6px;border:1px solid var(--line);border-radius:12px;background:#f8fafc;padding:4px;display:flex;gap:2px}
-    .tab{flex:1;text-align:center;font-size:7px;font-weight:700;color:#64748b;padding:4px 2px;border-radius:8px}
-    .tab.on{background:#dbeafe;color:#1d4ed8}
-    @media (max-width:900px){.phones{grid-template-columns:repeat(2,176px)}}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--text)}
+
+    .phone{width:295px;background:var(--frame);border-radius:38px;padding:6px;box-shadow:0 20px 50px rgba(15,23,42,.35)}
+    .screen{height:595px;background:var(--screen);border-radius:33px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.25)}
+
+    .status{height:30px;padding:6px 16px 0;display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:15px;color:#121926}
+    .island{position:absolute;top:4px;left:50%;transform:translateX(-50%);width:108px;height:26px;border-radius:16px;background:#0d1118}
+
+    .wrap{padding:14px 18px 0; text-align:center}
+    .brand{font-size:44px;line-height:1;font-weight:800;letter-spacing:-.02em;color:#2d3b60;font-style:italic;font-family:"Trebuchet MS",Inter,system-ui,sans-serif}
+    .headline{margin-top:24px;font-size:46px;line-height:1.14;font-weight:800;letter-spacing:-.01em}
+    .sub{margin-top:14px;font-size:36px;color:var(--muted);font-weight:500}
+
+    .segment{margin:20px auto 0;width:100%;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #d4dae6;border-radius:26px;overflow:hidden;background:#f2f4f8}
+    .segment span{padding:11px 0;font-size:28px;line-height:1;font-weight:500;color:#4b5568;border-right:1px solid #d4dae6}
+    .segment span:last-child{border-right:0}
+    .segment .on{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#fff;font-weight:600}
+
+    .hero{position:relative;height:245px;margin-top:22px}
+    .blob{position:absolute;border-radius:50%;opacity:.36}
+    .b1{width:88px;height:64px;left:-8px;top:28px;background:#f8bfd3}
+    .b2{width:96px;height:72px;right:-6px;top:18px;background:#d0e6ff}
+    .b3{width:118px;height:82px;right:2px;bottom:20px;background:#cceee3}
+    .b4{width:94px;height:70px;left:8px;bottom:28px;background:#efd4f8}
+    .b5{width:180px;height:40px;left:50%;transform:translateX(-50%);bottom:10px;background:#f2d8cb;opacity:.8}
+
+    .bubble{position:absolute;font-size:40px;opacity:.75}
+    .heart{left:26px;top:34px}
+    .lotus{left:24px;bottom:36px}
+    .dumbbell{right:30px;top:34px}
+    .mountain{right:30px;bottom:34px}
+
+    .pear{position:absolute;left:50%;top:34px;transform:translateX(-50%);width:142px;height:178px;filter:drop-shadow(0 13px 14px rgba(31,41,55,.22))}
+    .ready{margin-top:0;font-size:41px;font-weight:800}
+    .cta{margin-top:18px;border:0;width:100%;border-radius:24px;padding:17px 16px;font-size:42px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--blue),var(--blue2));box-shadow:0 10px 24px rgba(79,130,241,.34)}
+
+    .tabbar{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #d9dfeb;height:72px;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 10px 6px}
+    .tab{display:grid;justify-items:center;align-content:center;gap:2px;font-size:12px;color:#8b94a5;font-weight:600}
+    .tab .ico{font-size:21px;line-height:1}
+    .tab.on{color:#4f82f1}
+
+    .down{position:absolute;left:50%;bottom:58px;transform:translateX(-50%);width:62px;height:62px;border-radius:50%;border:2px solid #d7dce8;background:#fff;display:grid;place-items:center;font-size:34px;color:#2e3544;box-shadow:0 8px 22px rgba(15,23,42,.12)}
+
+    @media (max-width:420px){
+      .phone{transform:scale(.88)}
+    }
   </style>
 </head>
 <body>
-<div class="canvas">
-  <div class="phones">
-    <article class="phone"><div class="screen"><div class="status"><span>9:41</span><div class="island"></div><span>◔◔</span></div><div class="content"><div class="title">Sport Mate</div><div class="h">Finde dein perfektes Hobby!</div><div class="muted" style="margin-top:6px">Was ist deine aktuelle Stimmung?</div><div class="chips"><span class="chip on">Social</span><span class="chip">Spaß</span><span class="chip">Ruhig</span><span class="chip">Natur</span></div><div class="muted" style="text-align:center;margin-top:8px">Bereit? Los geht's!</div><div class="pearWrap"><div class="pear"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="SportMate Birne"><path d="M35 10c1.5-4.7 6.5-8.4 12.6-8.8" stroke="#1F6B31" stroke-width="3" stroke-linecap="round"/><path d="M36.8 11.7c-2.2 3.8-6 5.9-9.8 5.9-1.5 0-3.1-.3-4.6-1 2.8-3.5 6.9-6.2 11.8-6.9 1.6-.2 3 .6 2.6 2z" fill="#2FAA49"/><path d="M32 16.2c-9.2 0-15.8 6.9-15.8 16.5 0 2.3.5 4.5 1.3 6.6-4.2 3.1-6.5 7.4-6.5 12.7 0 10.7 9 19.3 21 19.3 12 0 21-8.6 21-19.3 0-5.3-2.3-9.6-6.5-12.7.8-2.1 1.3-4.3 1.3-6.6 0-9.6-6.6-16.5-15.8-16.5z" fill="#A3E635" stroke="#4D7C0F" stroke-width="2" transform="translate(0 -4)"/><ellipse cx="25" cy="30.4" rx="3.1" ry="3.4" fill="#1E293B"/><ellipse cx="39" cy="30.4" rx="3.1" ry="3.4" fill="#1E293B"/><circle cx="26" cy="29.4" r="0.7" fill="#fff"/><circle cx="40" cy="29.4" r="0.7" fill="#fff"/><path d="M26.4 40.1c1.8 2.2 3.8 3.2 5.9 3.2 2.1 0 4.1-1 5.9-3.2" stroke="#1E293B" stroke-width="2.4" stroke-linecap="round"/><circle cx="21.2" cy="34.5" r="1.4" fill="#F9A8D4" opacity=".75"/><circle cx="42.8" cy="34.5" r="1.4" fill="#F9A8D4" opacity=".75"/></svg></div><div class="pearShadow"></div></div><button class="btn">Weiter</button></div><div class="tabbar"><div class="tab on">Entdecken</div><div class="tab">Favoriten</div><div class="tab">Quiz</div><div class="tab">Profil</div></div></div></article>
+  <main class="phone" aria-label="SportMate Welcome Preview">
+    <section class="screen">
+      <div class="island"></div>
+      <div class="status">
+        <span>9:41</span>
+        <span>◔◔ ◼︎</span>
+      </div>
 
-    <article class="phone"><div class="screen"><div class="status"><span>9:41</span><div class="island"></div><span>◔◔</span></div><div class="content"><div class="h" style="text-align:center">Entdecke Ideen für dich</div><div class="chips"><span class="chip on">Für dich</span><span class="chip">Beliebt</span><span class="chip">Low impact</span></div><div class="muted" style="margin-top:6px;font-weight:700">Aktive Stimmung: Social</div><div class="card"><div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Volleyball</div><div class="s">Team Sport</div></div></div><div class="grid2"><div class="card"><div class="thumb" style="height:50px;background-image:url('https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Fussball</div><div class="s">Team Sport</div></div></div><div class="card"><div class="thumb" style="height:50px;background-image:url('https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Tanzen</div><div class="s">Dynamisch</div></div></div></div></div><div class="tabbar"><div class="tab on">Entdecken</div><div class="tab">Favoriten</div><div class="tab">Quiz</div><div class="tab">Profil</div></div></div></article>
+      <div class="wrap">
+        <div class="brand">SportMate</div>
+        <h1 class="headline">Willkommen<br>bei SportMate!</h1>
+        <div class="sub">Wie fühlst du dich aktuell?</div>
 
-    <article class="phone"><div class="screen"><div class="status"><span>9:41</span><div class="island"></div><span>◔◔</span></div><div class="content"><div class="h" style="text-align:center">Deine Ergebnisse</div><div class="muted">Du passt perfekt zu:</div><div class="card" style="margin-top:6px"><div class="thumb" style="height:78px;background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n" style="font-size:13px;color:#1d4ed8">Beachvolleyball</div><ul class="list"><li>Tolles Teamwork</li><li>Fit & aktiv an der frischen Luft</li><li>Perfekt im Sommer</li></ul><button class="btn">Details ansehen</button></div></div><div class="muted" style="margin-top:7px">Weitere Empfehlungen:</div><div class="grid2"><div class="card"><div class="thumb" style="height:48px;background-image:url('https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Kajak</div><div class="s">Outdoor</div></div></div><div class="card"><div class="thumb" style="height:48px;background-image:url('https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=800&q=80')"></div><div class="meta"><div class="n">Badminton</div><div class="s">Sportlich</div></div></div></div></div></div></article>
+        <div class="segment" aria-label="Stimmung wählen">
+          <span class="on">Social</span>
+          <span>Ruhe</span>
+          <span>Natur</span>
+          <span>Fit</span>
+        </div>
 
-    <article class="phone"><div class="screen"><div class="status"><span>9:41</span><div class="island"></div><span>◔◔</span></div><div class="hero" style="background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80')"></div><div class="content"><div class="h" style="font-size:14px">Beachvolleyball</div><div class="muted">Überblick</div><ul class="list" style="font-size:9px"><li>Art: Team Sport</li><li>Ort: Draußen</li><li>Intensität: Moderat</li><li>Kalorienverbrauch: ~400 kcal/Stunde</li><li>Toll für den Sommer</li></ul><button class="btn" style="margin-top:6px">❤️ Zu Favoriten hinzufügen</button></div></div></article>
-  </div>
-</div>
+        <div class="hero" aria-hidden="true">
+          <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><div class="blob b5"></div>
+          <div class="bubble heart">💗</div>
+          <div class="bubble dumbbell">🏋️‍♂️</div>
+          <div class="bubble lotus">🪷</div>
+          <div class="bubble mountain">⛰️</div>
+
+          <svg class="pear" viewBox="0 0 140 178" xmlns="http://www.w3.org/2000/svg">
+            <path d="M76 26c2-11 12-20 24-22" stroke="#6b493b" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <ellipse cx="63" cy="34" rx="17" ry="10" fill="#89c540" transform="rotate(-8 63 34)"/>
+            <radialGradient id="g" cx="45%" cy="30%" r="60%">
+              <stop offset="0" stop-color="#f2f8a8"/>
+              <stop offset="0.55" stop-color="#b7dd59"/>
+              <stop offset="1" stop-color="#65a746"/>
+            </radialGradient>
+            <path d="M70 40c-27 0-46 21-46 52 0 29 18 54 46 54s46-25 46-54c0-31-19-52-46-52z" fill="url(#g)"/>
+            <ellipse cx="54" cy="88" rx="4" ry="5" fill="#1f2937"/>
+            <ellipse cx="84" cy="88" rx="4" ry="5" fill="#1f2937"/>
+            <path d="M58 104c3 4 6.5 6 11 6 4.5 0 8-2 11-6" stroke="#1f2937" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <ellipse cx="44" cy="98" rx="4" ry="2" fill="#e8f1b5" opacity=".55"/>
+            <ellipse cx="96" cy="98" rx="4" ry="2" fill="#e8f1b5" opacity=".55"/>
+          </svg>
+        </div>
+
+        <div class="ready">Bereit! Los gehts!</div>
+        <button class="cta">Los geht's!</button>
+      </div>
+
+      <div class="down">↓</div>
+
+      <nav class="tabbar" aria-label="Bottom Navigation">
+        <div class="tab on"><div class="ico">🏠</div><div>Start</div></div>
+        <div class="tab"><div class="ico">🩶</div><div>Entdecken</div></div>
+        <div class="tab"><div class="ico">❤️</div><div>Favoriten</div></div>
+        <div class="tab"><div class="ico">👤</div><div>Profil</div></div>
+      </nav>
+    </section>
+  </main>
 </body>
 </html>
