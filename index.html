@@ -10,7 +10,8 @@
       .app{min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:20px}
       .phone{width:min(430px,100%);background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:0 24px 44px rgba(15,23,42,.16)}
       .top{padding:14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:#ffffffcc;backdrop-filter:blur(8px)}
-      .brand{font-weight:900;letter-spacing:-.02em}
+      .brand{font-weight:900;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+      .pearLogo{width:28px;height:28px;border-radius:8px;background:#f8fafc;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
       .icons{display:flex;gap:8px}.icon{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:#334155;font-size:14px}
       .inner{padding:14px 14px 86px;position:relative;min-height:76vh}
       .tabs{position:absolute;left:10px;right:10px;bottom:10px;background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:6px;display:flex;gap:4px}
@@ -34,7 +35,7 @@
   <body>
     <div class="app">
       <div class="phone">
-        <div class="top"><div class="brand">SportMate</div><div class="icons"><div class="icon">♡</div><div class="icon">⚙</div></div></div>
+        <div class="top"><div class="brand"><span class="pearLogo" aria-hidden><svg width="20" height="20" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M37 10c-2 4-6 6-9 6-2 0-4-.5-6-1.5 3-3.5 7-6.5 12-7.5 2-.5 4 .5 3 3z" fill="#16A34A"/><path d="M35 13c2-6 8-10 14-11" stroke="#166534" stroke-width="3" stroke-linecap="round"/><path d="M32 18c-8 0-14 6-14 15 0 2 .4 4 1.1 6-4 3-6.1 7-6.1 12 0 10 8 18 19 18s19-8 19-18c0-5-2.1-9-6.1-12 .7-2 1.1-4 1.1-6 0-9-6-15-14-15z" fill="#34D399" stroke="#065F46" stroke-width="2"/><path d="M20 43c2-8 8-13 12-13" stroke="rgba(255,255,255,0.55)" stroke-width="4" stroke-linecap="round"/></svg></span><span>SportMate</span></div><div class="icons"><div class="icon">♡</div><div class="icon">⚙</div></div></div>
         <div class="inner">
           <section id="welcomeView"></section>
           <section id="homeView" hidden></section>
