@@ -106,6 +106,7 @@
         'Radfahren':'https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=1200&q=80',
       };
       function imageForSport(s){ return s.image || REAL_IMAGE_OVERRIDES[s.name] || imageUrl(s.query); }
+      function fallbackImageForSport(s){ return `https://loremflickr.com/640/420/${encodeURIComponent((s.query||'sport')+',sport')}`; }
 
       function setView(v){st.view=v;Object.entries(views).forEach(([k,el])=>el.hidden=k!==v);tabs.forEach(b=>b.classList.toggle('active',b.dataset.view===v));render();}
 
@@ -116,7 +117,7 @@
       }
             function calc(){ const r=SPORTS.map(s=>({...s,score:score(s)})).sort((a,b)=>b.score-a.score); st.result=r[0]; }
 
-      function card(s){return `<article class="sport"><div class="thumb"><img src="${imageForSport(s)}" alt="${s.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80'"></div><div class="body"><div class="name">${s.name}</div><div class="tags">${s.tags.join(' · ')}</div></div></article>`;}
+      function card(s){return `<article class="sport"><div class="thumb"><img src="${imageForSport(s)}" alt="${s.name}" loading="lazy" data-fallback="${fallbackImageForSport(s)}" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.dataset.fallback='';}else{this.onerror=null;this.src='https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80';}"></div><div class="body"><div class="name">${s.name}</div><div class="tags">${s.tags.join(' · ')}</div></div></article>`;}
 
       function renderHome(){
         const sample=SPORTS.find(s=>s.name==='Fussball')||SPORTS[0];
@@ -127,7 +128,7 @@
 
       function renderDir(){const q=st.query.toLowerCase().trim();const list=SPORTS.filter(s=>!q||s.name.toLowerCase().includes(q)||s.tags.join(' ').includes(q));directoryView.innerHTML=`<div class="card"><div class="row"><h2>Sportarten Verzeichnis</h2><span class="muted">${list.length} von ${SPORTS.length}</span></div><div class="sp"></div><input class="search" value="${st.query}" placeholder="Suche Sportart / Tag" /></div><div class="sp"></div><div class="grid">${list.map(card).join('')}</div>`;directoryView.querySelector('.search').addEventListener('input',e=>{st.query=e.target.value;renderDir();});}
 
-      function renderResult(){if(!st.result){resultView.innerHTML=`<div class="card"><h2>Noch kein Ergebnis</h2><div class="muted" style="margin-top:6px">Bitte zuerst das Quiz abschließen.</div><div class="sp"></div><button class="btn primary" data-go="quiz">Zum Quiz</button></div>`;return;} const best=st.result; const alt=SPORTS.filter(s=>s.id!==best.id).sort((a,b)=>score(b)-score(a)).slice(0,4); resultView.innerHTML=`<div class="card"><h2>Dein bestes Match</h2><div class="muted" style="margin-top:4px">Ermittelt aus 10 Fragen</div><div class="sp"></div><div class="resultHero"><div class="thumb"><img src="${imageForSport(best)}" alt="${best.name}" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80'"></div></div><div class="sp"></div><h3>${best.name}</h3><div class="muted">${best.tags.join(' · ')}</div><div class="sp"></div><div class="row"><button class="btn ghost" data-restart="1">Quiz neu</button><button class="btn primary" data-go="directory">Verzeichnis</button></div></div><div class="sp"></div><div class="grid">${alt.map(card).join('')}</div>`;}
+      function renderResult(){if(!st.result){resultView.innerHTML=`<div class="card"><h2>Noch kein Ergebnis</h2><div class="muted" style="margin-top:6px">Bitte zuerst das Quiz abschließen.</div><div class="sp"></div><button class="btn primary" data-go="quiz">Zum Quiz</button></div>`;return;} const best=st.result; const alt=SPORTS.filter(s=>s.id!==best.id).sort((a,b)=>score(b)-score(a)).slice(0,4); resultView.innerHTML=`<div class="card"><h2>Dein bestes Match</h2><div class="muted" style="margin-top:4px">Ermittelt aus 10 Fragen</div><div class="sp"></div><div class="resultHero"><div class="thumb"><img src="${imageForSport(best)}" alt="${best.name}" data-fallback="${fallbackImageForSport(best)}" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.dataset.fallback='';}else{this.onerror=null;this.src='https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80';}"></div></div><div class="sp"></div><h3>${best.name}</h3><div class="muted">${best.tags.join(' · ')}</div><div class="sp"></div><div class="row"><button class="btn ghost" data-restart="1">Quiz neu</button><button class="btn primary" data-go="directory">Verzeichnis</button></div></div><div class="sp"></div><div class="grid">${alt.map(card).join('')}</div>`;}
 
       function render(){ if(st.view==='home') renderHome(); if(st.view==='quiz') renderQuiz(); if(st.view==='directory') renderDir(); if(st.view==='result') renderResult(); }
 
