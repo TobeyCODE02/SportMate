@@ -6,488 +6,250 @@
     <title>SportMate</title>
     <style>
       :root {
-        --bg: #000;
-        --panel: #0b0b0f;
-        --panel-border: #34343b;
-        --phone: #111827;
-        --white: #fff;
-        --text: #0f172a;
+        --bg: #f3f6ff;
+        --surface: #ffffff;
+        --line: #dbe2f0;
+        --text: #111827;
         --muted: #64748b;
         --blue: #2f6bff;
-        --blue-2: #1f56dc;
       }
       * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-        background: var(--bg);
-        color: #fff;
-      }
-      .stage {
-        min-height: 100vh;
-        padding: 40px 20px 30px;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-      .top-actions {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 36px;
-      }
-      .ui-btn {
-        border: 2px solid var(--panel-border);
-        background: var(--panel);
-        color: #fff;
-        font-weight: 700;
-      }
-      .ui-btn.circle {
-        width: 62px;
-        height: 62px;
-        border-radius: 999px;
-        font-size: 28px;
-      }
-      .ui-btn.pill {
-        height: 62px;
-        border-radius: 999px;
-        padding: 0 24px;
-        font-size: 24px;
-      }
-      .ui-btn.white {
-        background: #f3f4f6;
-        border-color: #f3f4f6;
-        color: #000;
-      }
-
-      .phone-wrap {
-        background: #ececec;
-        border-radius: 14px;
-        padding: 30px 20px;
-      }
-      .phone {
-        width: min(390px, 100%);
-        margin: 0 auto;
-        border-radius: 36px;
-        background: var(--phone);
-        padding: 10px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      }
-      .screen {
-        background: #fff;
-        min-height: 780px;
-        border-radius: 28px;
-        overflow: hidden;
-        color: var(--text);
-        position: relative;
-      }
-      .status {
-        padding: 7px 14px 0;
-        font-size: 10px;
-        color: #475569;
-      }
-      .app-title {
-        text-align: center;
-        font-weight: 800;
-        font-size: 18px;
-        color: #334155;
-        margin: 4px 0 10px;
-      }
-      .content {
-        padding: 0 14px 88px;
-      }
-      h2 {
-        margin: 0;
-        font-size: 24px;
-        letter-spacing: -0.02em;
-      }
-      .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
-
-      .chip-row { display: flex; gap: 7px; flex-wrap: wrap; margin: 10px 0; }
-      .chip {
-        border-radius: 999px;
-        border: 1px solid #cbd5e1;
-        background: #f8fafc;
-        padding: 6px 10px;
-        font-size: 12px;
-        font-weight: 700;
-      }
-      .chip.active { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
-
-      .hero-pear {
-        width: 86px;
-        height: 86px;
-        margin: 16px auto;
-        border-radius: 28px;
-        background: radial-gradient(circle at 35% 30%, #ecfccb, #84cc16 70%);
-      }
-      .primary {
-        width: 100%;
-        border: 0;
-        border-radius: 10px;
-        background: linear-gradient(180deg, var(--blue), var(--blue-2));
-        color: #fff;
-        font-weight: 800;
-        padding: 11px;
-        cursor: pointer;
-      }
-      .secondary {
-        border: 1px solid #cbd5e1;
-        border-radius: 10px;
-        background: #fff;
-        color: #334155;
-        font-weight: 700;
-        padding: 10px;
-        cursor: pointer;
-      }
-
-      .card {
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        margin-top: 10px;
-        overflow: hidden;
-        background: #fff;
-      }
-      .thumb {
-        height: 104px;
-        background-size: cover;
-        background-position: center;
-      }
-      .card-body { padding: 10px; }
-      .card-title { font-weight: 800; font-size: 16px; }
-      .card-sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
-
-      .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-
-      .result-box {
-        border-radius: 12px;
-        border: 1px solid #bfdbfe;
-        background: #eff6ff;
-        overflow: hidden;
-      }
-      .result-head {
-        font-weight: 800;
-        font-size: 22px;
-        color: #1d4ed8;
-        margin-bottom: 4px;
-      }
-      ul { margin: 8px 0 10px 18px; padding: 0; font-size: 13px; }
-      li { margin: 4px 0; }
-
-      .detail-hero { height: 180px; background-size: cover; background-position: center; }
-      .detail-row { border-top: 1px solid #e2e8f0; padding: 10px 0; font-size: 13px; }
-
-      .tabbar {
-        position: absolute;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 18px;
-        display: flex;
-        padding: 7px;
-        gap: 4px;
-      }
-      .tab {
-        flex: 1;
-        border: 0;
-        border-radius: 12px;
-        background: transparent;
-        color: #64748b;
-        font-size: 11px;
-        font-weight: 700;
-        padding: 8px 2px;
-        cursor: pointer;
-      }
-      .tab.active { background: #dbeafe; color: #1d4ed8; }
-
-      .toast {
-        position: absolute;
-        top: 16px;
-        left: 14px;
-        right: 14px;
-        padding: 10px 12px;
-        border-radius: 12px;
-        background: #0f172a;
-        color: #fff;
-        font-size: 13px;
-        opacity: 0;
-        transform: translateY(-8px);
-        transition: .2s;
-        pointer-events: none;
-      }
-      .toast.show { opacity: 1; transform: translateY(0); }
-
-      @media (max-width: 700px) {
-        .ui-btn.circle { width: 48px; height: 48px; font-size: 22px; }
-        .ui-btn.pill { height: 48px; padding: 0 16px; font-size: 20px; }
-      }
+      body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); }
+      .app { min-height: 100vh; width: 100vw; }
+      .header { position: sticky; top: 0; z-index: 20; background: #ffffffea; backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; }
+      .logo { font-weight: 900; letter-spacing: -0.02em; }
+      .tabs { display: flex; gap: 6px; }
+      .tab { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 7px 12px; font-size: 12px; font-weight: 700; cursor: pointer; }
+      .tab.active { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
+      main { max-width: 920px; margin: 0 auto; padding: 14px; }
+      .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+      h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
+      .muted { color: var(--muted); font-size: 13px; }
+      .sp { height: 10px; }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+      .chip { border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: 8px 12px; font-weight: 700; font-size: 13px; cursor: pointer; }
+      .chip.on { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
+      .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+      .progress { margin-top: 10px; height: 10px; border: 1px solid var(--line); background: #eaf0ff; border-radius: 999px; overflow: hidden; }
+      .progress > div { height: 100%; background: linear-gradient(90deg, #2f6bff, #14b8a6); width: 0%; transition: width .2s; }
+      button.primary { border: 0; border-radius: 12px; background: linear-gradient(180deg, #2f6bff, #2457d9); color: #fff; padding: 10px 14px; font-weight: 800; cursor: pointer; }
+      button.ghost { border: 1px solid var(--line); border-radius: 12px; background: #fff; color: #334155; padding: 10px 14px; font-weight: 700; cursor: pointer; }
+      .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+      .sport { overflow: hidden; border-radius: 14px; border: 1px solid var(--line); background: #fff; }
+      .thumb { height: 130px; background: linear-gradient(135deg, #bfdbfe, #a7f3d0); position: relative; }
+      .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .sport .body { padding: 10px; }
+      .name { font-weight: 800; }
+      .tags { color: var(--muted); font-size: 12px; margin-top: 3px; }
+      .resultHero { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+      .resultHero .thumb { height: 180px; }
+      .list { margin: 8px 0 0 16px; padding: 0; }
+      .search { width: 100%; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 10px 12px; font-weight: 700; }
     </style>
   </head>
   <body>
-    <main class="stage">
-      <section class="top-actions">
-        <button class="ui-btn circle" id="closeBtn">×</button>
-        <button class="ui-btn circle" id="infoBtn">ⓘ</button>
-        <button class="ui-btn pill" id="saveBtn">Speichern</button>
-        <button class="ui-btn pill white" id="shareBtn">Weiter-<br />geben</button>
-      </section>
-
-      <section class="phone-wrap">
-        <div class="phone">
-          <div class="screen" id="screen">
-            <div class="toast" id="toast"></div>
-            <div class="status">9:41</div>
-            <div class="app-title">Sport Mate</div>
-            <div class="content" id="content"></div>
-            <nav class="tabbar">
-              <button class="tab active" data-tab="onboarding">Entdecken</button>
-              <button class="tab" data-tab="discover">Favoriten</button>
-              <button class="tab" data-tab="results">Quiz</button>
-              <button class="tab" data-tab="profile">Profil</button>
-            </nav>
-          </div>
-        </div>
-      </section>
-    </main>
+    <div class="app">
+      <header class="header">
+        <div class="logo">SportMate</div>
+        <nav class="tabs">
+          <button class="tab active" data-view="quiz">Quiz</button>
+          <button class="tab" data-view="directory">Verzeichnis</button>
+          <button class="tab" data-view="result">Ergebnis</button>
+        </nav>
+      </header>
+      <main>
+        <section id="quizView"></section>
+        <section id="directoryView" hidden></section>
+        <section id="resultView" hidden></section>
+      </main>
+    </div>
 
     <script>
-      const sports = [
-        {
-          id: 'beach',
-          name: 'Beachvolleyball',
-          type: 'Team Sport',
-          place: 'Draussen',
-          intensity: 'Moderat',
-          vibe: 'Cooles Teamgefühl',
-          summary: ['Tolles Teamwork', 'Fit & aktiv an der frischen Luft', 'Perfekt im Sommer'],
-          tags: ['Social', 'Natur'],
-          mood: ['social', 'spass'],
-          image: 'linear-gradient(120deg,#60a5fa,#fde68a)'
-        },
-        {
-          id: 'soccer',
-          name: 'Fussball',
-          type: 'Team Sport',
-          place: 'Draussen',
-          intensity: 'Hoch',
-          vibe: 'Dynamisch',
-          summary: ['Sehr sozial', 'Schneller Einstieg im Verein', 'Action pur'],
-          tags: ['Social', 'Spass'],
-          mood: ['social', 'spass'],
-          image: 'linear-gradient(120deg,#86efac,#22c55e)'
-        },
-        {
-          id: 'dance',
-          name: 'Tanzen',
-          type: 'Dynamisch',
-          place: 'Indoor',
-          intensity: 'Moderat',
-          vibe: 'Rhythmisch',
-          summary: ['Kreativ und sozial', 'Perfekt für Anfänger', 'Gute Community'],
-          tags: ['Spass'],
-          mood: ['spass'],
-          image: 'linear-gradient(120deg,#fdba74,#fb7185)'
-        },
-        {
-          id: 'kayak',
-          name: 'Kajak',
-          type: 'Outdoor',
-          place: 'Wasser',
-          intensity: 'Mittel',
-          vibe: 'Naturfokus',
-          summary: ['Entspanntes Tempo', 'Natur erleben', 'Sehr abwechslungsreich'],
-          tags: ['Natur', 'Ruhig'],
-          mood: ['natur', 'ruhig'],
-          image: 'linear-gradient(120deg,#38bdf8,#0ea5e9)'
-        }
+      const SPORTS = [
+        ['Yoga','yoga', ['ruhig','low','solo','indoor','mindful']], ['Pilates','pilates', ['ruhig','low','solo','indoor']], ['Tai Chi','tai chi', ['ruhig','low','solo','outdoor']], ['Qigong','qigong', ['ruhig','low','solo','outdoor']],
+        ['Spazieren','walking', ['ruhig','low','solo','outdoor']], ['Nordic Walking','nordic walking', ['ruhig','low','solo','outdoor']], ['Wandern','hiking', ['natur','medium','solo','outdoor']], ['Schwimmen','swimming', ['wasser','low','solo','indoor']],
+        ['Aquajogging','aqua jogging', ['wasser','low','solo','indoor']], ['SUP','stand up paddling', ['wasser','medium','solo','outdoor']], ['Kajak','kayaking', ['wasser','medium','team','outdoor']], ['Rudern','rowing', ['wasser','medium','team','outdoor']],
+        ['Segeln','sailing', ['wasser','low','team','outdoor']], ['Tauchen','scuba diving', ['wasser','medium','team','outdoor']], ['Tanzen','dance class', ['spass','medium','team','indoor']], ['Zumba','zumba class', ['spass','medium','team','indoor']],
+        ['Salsa','salsa dance', ['spass','medium','team','indoor']], ['Ballett','ballet class', ['kreativ','medium','team','indoor']], ['Fussball','football', ['spass','high','team','outdoor']], ['Basketball','basketball', ['spass','high','team','indoor']],
+        ['Volleyball','volleyball', ['spass','high','team','indoor']], ['Beachvolleyball','beach volleyball', ['spass','high','team','outdoor']], ['Handball','handball', ['spass','high','team','indoor']], ['Tennis','tennis', ['challenge','medium','solo','outdoor']],
+        ['Badminton','badminton', ['spass','medium','team','indoor']], ['Squash','squash', ['challenge','high','solo','indoor']], ['Tischtennis','table tennis', ['spass','low','team','indoor']], ['Padel','padel tennis', ['spass','medium','team','outdoor']],
+        ['Radfahren','cycling', ['natur','medium','solo','outdoor']], ['Mountainbike','mountain biking', ['natur','high','solo','outdoor']], ['Spinning','spinning class', ['challenge','high','team','indoor']], ['Joggen','running', ['challenge','high','solo','outdoor']],
+        ['Trailrunning','trail running', ['challenge','high','solo','outdoor']], ['Gym Krafttraining','weight training gym', ['challenge','medium','solo','indoor']], ['HIIT','hiit workout', ['challenge','high','solo','indoor']], ['Boxen','boxing', ['challenge','high','solo','indoor']],
+        ['Judo','judo', ['challenge','high','team','indoor']], ['Karate','karate', ['challenge','medium','team','indoor']], ['Bouldern','bouldering', ['challenge','high','team','indoor']], ['Klettern Halle','indoor climbing', ['challenge','high','team','indoor']],
+        ['Klettern Outdoor','rock climbing', ['challenge','high','team','outdoor']], ['Skifahren','skiing', ['spass','high','team','outdoor']], ['Snowboard','snowboarding', ['spass','high','team','outdoor']], ['Langlauf','cross country skiing', ['natur','medium','solo','outdoor']],
+        ['Eislaufen','ice skating', ['spass','medium','team','indoor']], ['Bowling','bowling', ['spass','low','team','indoor']], ['Billard','billiards', ['ruhig','low','team','indoor']], ['Darts','darts', ['spass','low','team','indoor']],
+        ['Bogenschiessen','archery', ['mindful','low','solo','outdoor']], ['Golf','golf', ['ruhig','low','solo','outdoor']], ['Inline Skating','inline skating', ['spass','high','solo','outdoor']], ['Skateboard','skateboard', ['challenge','high','solo','outdoor']],
+        ['Parkour','parkour', ['challenge','high','solo','outdoor']], ['Slackline','slackline', ['mindful','medium','solo','outdoor']], ['Ultimate Frisbee','ultimate frisbee', ['spass','high','team','outdoor']], ['Disc Golf','disc golf', ['natur','low','team','outdoor']],
+        ['Fechten','fencing', ['challenge','medium','team','indoor']], ['Geocaching','geocaching', ['natur','low','team','outdoor']], ['Reiten','horse riding', ['natur','medium','solo','outdoor']], ['Surfen','surfing', ['wasser','high','solo','outdoor']]
+      ].map((x, i) => ({ id: i + 1, name: x[0], query: x[1], tags: x[2] }));
+
+      const QUESTIONS = [
+        { q: 'Was suchst du am meisten?', key: 'goal', opts: [['Entspannung','ruhig'], ['Spaß','spass'], ['Challenge','challenge'], ['Kreativ','kreativ']] },
+        { q: 'Wo möchtest du lieber trainieren?', key: 'place', opts: [['Outdoor','outdoor'], ['Indoor','indoor'], ['Egal','either']] },
+        { q: 'Solo oder mit anderen?', key: 'group', opts: [['Solo','solo'], ['Team','team'], ['Beides','either']] },
+        { q: 'Wie intensiv darf es sein?', key: 'intensity', opts: [['Low','low'], ['Medium','medium'], ['High','high']] },
+        { q: 'Magst du Wasser?', key: 'water', opts: [['Ja','wasser'], ['Nicht wichtig','none'], ['Nein','nowater']] },
+        { q: 'Natur wichtig?', key: 'nature', opts: [['Ja','natur'], ['Egal','none'], ['Nein','nonatur']] },
+        { q: 'Budget?', key: 'budget', opts: [['Niedrig','budget_low'], ['Mittel','budget_mid'], ['Hoch ok','budget_high']] },
+        { q: 'Ausrüstung?', key: 'gear', opts: [['Keine/Basic','basic'], ['Etwas ok','mid'], ['Spezial ok','pro']] },
+        { q: 'Gesundheitsfokus?', key: 'health', opts: [['Gelenkschonend','low'], ['Normal','none'], ['Action ok','high']] },
+        { q: 'Wie schnell starten?', key: 'start', opts: [['Sofort einfach','easy'], ['Darf lernen brauchen','learn'], ['Egal','none']] },
       ];
 
       const state = {
-        tab: 'onboarding',
-        mood: 'social',
-        favorites: JSON.parse(localStorage.getItem('sportmate_favs') || '[]'),
-        selected: sports[0].id,
+        view: 'quiz',
+        step: 0,
+        answers: {},
+        result: null,
+        query: '',
       };
 
-      const content = document.getElementById('content');
-      const toast = document.getElementById('toast');
-      const tabs = Array.from(document.querySelectorAll('.tab'));
+      const quizView = document.getElementById('quizView');
+      const directoryView = document.getElementById('directoryView');
+      const resultView = document.getElementById('resultView');
+      const tabs = [...document.querySelectorAll('.tab')];
 
-      function showToast(text) {
-        toast.textContent = text;
-        toast.classList.add('show');
-        window.clearTimeout(showToast.t);
-        showToast.t = window.setTimeout(() => toast.classList.remove('show'), 1600);
-      }
+      const imageUrl = (q) => `https://source.unsplash.com/featured/640x420?${encodeURIComponent(q + ' sport')}`;
 
-      function setTab(tab) {
-        state.tab = tab;
-        tabs.forEach((btn) => btn.classList.toggle('active', btn.dataset.tab === tab));
+      function setView(v) {
+        state.view = v;
+        quizView.hidden = v !== 'quiz';
+        directoryView.hidden = v !== 'directory';
+        resultView.hidden = v !== 'result';
+        tabs.forEach((b) => b.classList.toggle('active', b.dataset.view === v));
         render();
       }
 
-      function toggleFav(id) {
-        if (state.favorites.includes(id)) {
-          state.favorites = state.favorites.filter((x) => x !== id);
-          showToast('Aus Favoriten entfernt');
-        } else {
-          state.favorites.push(id);
-          showToast('Zu Favoriten hinzugefügt');
+      function scoreSport(s) {
+        const a = state.answers;
+        let score = 0;
+        const has = (tag) => s.tags.includes(tag);
+        if (a.goal && has(a.goal)) score += 6;
+        if (a.place && a.place !== 'either' && has(a.place)) score += 4;
+        if (a.group && a.group !== 'either' && has(a.group)) score += 4;
+        if (a.intensity && has(a.intensity)) score += 5;
+        if (a.water === 'wasser' && has('wasser')) score += 6;
+        if (a.water === 'nowater' && has('wasser')) score -= 4;
+        if (a.nature === 'natur' && has('natur')) score += 4;
+        if (a.nature === 'nonatur' && has('natur')) score -= 3;
+        if (a.health === 'low' && has('high')) score -= 4;
+        if (a.health === 'high' && has('high')) score += 2;
+        if (a.start === 'easy' && has('challenge')) score -= 2;
+        if (a.start === 'learn' && has('challenge')) score += 2;
+        return score;
+      }
+
+      function calculateResult() {
+        const ranked = SPORTS.map((s) => ({ ...s, score: scoreSport(s) })).sort((a, b) => b.score - a.score);
+        state.result = ranked[0];
+      }
+
+      function renderQuiz() {
+        const item = QUESTIONS[state.step];
+        const progress = ((state.step + 1) / QUESTIONS.length) * 100;
+        quizView.innerHTML = `
+          <div class="card">
+            <div class="row"><h2>Quiz · Frage ${state.step + 1}/10</h2><span class="muted">Hobby-Match</span></div>
+            <div class="muted" style="margin-top:4px">${item.q}</div>
+            <div class="progress"><div style="width:${progress}%"></div></div>
+            <div class="chips">
+              ${item.opts.map(([label, val]) => `<button class="chip ${state.answers[item.key] === val ? 'on' : ''}" data-answer="${val}">${label}</button>`).join('')}
+            </div>
+            <div class="sp"></div>
+            <div class="row">
+              <button class="ghost" ${state.step === 0 ? 'disabled' : ''} data-back="1">Zurück</button>
+              <button class="primary" data-next="1">${state.step === QUESTIONS.length - 1 ? 'Ergebnis anzeigen' : 'Weiter'}</button>
+            </div>
+          </div>
+        `;
+      }
+
+      function cardHtml(s) {
+        return `<article class="sport"><div class="thumb"><img src="${imageUrl(s.query)}" alt="${s.name}" loading="lazy" onerror="this.remove()"></div><div class="body"><div class="name">${s.name}</div><div class="tags">${s.tags.join(' · ')}</div></div></article>`;
+      }
+
+      function renderDirectory() {
+        const q = state.query.trim().toLowerCase();
+        const list = SPORTS.filter((s) => !q || s.name.toLowerCase().includes(q) || s.tags.join(' ').includes(q));
+        directoryView.innerHTML = `
+          <div class="card">
+            <div class="row"><h2>Sportarten Verzeichnis</h2><span class="muted">${list.length} von ${SPORTS.length}</span></div>
+            <div class="sp"></div>
+            <input class="search" placeholder="Suche z.B. Wasser, Team, Yoga..." value="${state.query}" />
+          </div>
+          <div class="sp"></div>
+          <div class="grid">${list.map(cardHtml).join('')}</div>
+        `;
+        directoryView.querySelector('.search').addEventListener('input', (e) => { state.query = e.target.value; renderDirectory(); });
+      }
+
+      function renderResult() {
+        if (!state.result) {
+          resultView.innerHTML = `<div class="card"><h2>Noch kein Ergebnis</h2><div class="muted" style="margin-top:6px">Bitte zuerst das Quiz ausfüllen.</div><div class="sp"></div><button class="primary" data-gotoquiz="1">Zum Quiz</button></div>`;
+          return;
         }
-        localStorage.setItem('sportmate_favs', JSON.stringify(state.favorites));
-        render();
-      }
-
-      function sportCard(s, withAction = true) {
-        const isFav = state.favorites.includes(s.id);
-        return `
-          <article class="card" data-open="${s.id}">
-            <div class="thumb" style="background:${s.image}"></div>
-            <div class="card-body">
-              <div class="card-title">${s.name}</div>
-              <div class="card-sub">${s.type}</div>
-              ${withAction ? `<div style="display:flex;gap:8px;margin-top:8px"><button class="secondary" data-open="${s.id}" style="flex:1">Details</button><button class="secondary" data-fav="${s.id}">${isFav ? '❤️' : '🤍'}</button></div>` : ''}
-            </div>
-          </article>
-        `;
-      }
-
-      function renderOnboarding() {
-        return `
-          <h2>Finde dein perfektes Hobby!</h2>
-          <div class="sub">Was ist deine aktuelle Stimmung?</div>
-          <div class="chip-row">
-            ${['social', 'spass', 'ruhig', 'natur'].map((m) => `<button class="chip ${state.mood === m ? 'active' : ''}" data-mood="${m}">${m[0].toUpperCase() + m.slice(1)}</button>`).join('')}
-          </div>
-          <div class="sub">Bereit? Los geht's!</div>
-          <div class="hero-pear"></div>
-          <button class="primary" data-next="discover">Weiter</button>
-        `;
-      }
-
-      function renderDiscover() {
-        const list = sports.filter((s) => s.mood.includes(state.mood));
-        const items = (list.length ? list : sports).map((s) => sportCard(s)).join('');
-        return `
-          <h2>Entdecke Ideen für dich</h2>
-          <div class="chip-row">
-            <span class="chip active">Für dich</span>
-            <span class="chip">Beliebt</span>
-            <span class="chip">Low impact</span>
-          </div>
-          ${items}
-        `;
-      }
-
-      function renderResults() {
-        const top = sports.find((s) => s.id === state.selected) || sports[0];
-        const others = sports.filter((s) => s.id !== top.id).slice(0, 2);
-        return `
-          <h2>Deine Ergebnisse</h2>
-          <div class="sub">Du passt perfekt zu:</div>
-          <div class="result-box" style="margin-top:10px">
-            <div class="thumb" style="background:${top.image};height:120px"></div>
-            <div class="card-body">
-              <div class="result-head">${top.name}</div>
-              <ul>${top.summary.map((x) => `<li>${x}</li>`).join('')}</ul>
-              <button class="primary" data-open="${top.id}">Details ansehen</button>
-            </div>
-          </div>
-          <div class="sub" style="margin-top:12px">Weitere Empfehlungen:</div>
-          <div class="grid2">${others.map((s) => sportCard(s, false)).join('')}</div>
-        `;
-      }
-
-      function renderProfile() {
-        const favCount = state.favorites.length;
-        return `
-          <h2>Profil</h2>
-          <div class="sub">SportMate ist dein Hobby-Finder – kein Fitness-Tracker.</div>
+        const best = state.result;
+        const alternatives = SPORTS.filter((s) => s.id !== best.id).sort((a, b) => scoreSport(b) - scoreSport(a)).slice(0, 6);
+        resultView.innerHTML = `
           <div class="card">
-            <div class="card-body">
-              <div class="card-title">Favoriten</div>
-              <div class="card-sub">${favCount} gespeichert</div>
-              <button class="secondary" style="margin-top:10px;width:100%" data-clear="1">Favoriten leeren</button>
-            </div>
+            <h2>Dein bestes Match</h2>
+            <div class="muted" style="margin-top:4px">Basierend auf 10 Fragen</div>
+            <div class="sp"></div>
+            <div class="resultHero"><div class="thumb"><img src="${imageUrl(best.query)}" alt="${best.name}" onerror="this.remove()"></div></div>
+            <div class="sp"></div>
+            <h3>${best.name}</h3>
+            <div class="muted">Tags: ${best.tags.join(' · ')}</div>
+            <ul class="list"><li>Passt zu deinem Zielprofil.</li><li>Gut für deinen gewünschten Rahmen (Ort/Intensität).</li><li>Direkt als Hobby einsteigbar.</li></ul>
+            <div class="row"><button class="ghost" data-gotoquiz="1">Quiz neu starten</button><button class="primary" data-gotodir="1">Alle Sportarten</button></div>
           </div>
-          <div class="card">
-            <div class="card-body">
-              <div class="card-title">Aktive Stimmung</div>
-              <div class="chip-row" style="margin-top:8px"><span class="chip active">${state.mood}</span></div>
-            </div>
-          </div>
-        `;
-      }
-
-      function renderDetail(id) {
-        const s = sports.find((x) => x.id === id);
-        if (!s) return renderDiscover();
-        const isFav = state.favorites.includes(s.id);
-        return `
-          <div class="detail-hero" style="background:${s.image}"></div>
-          <div style="padding-top:12px">
-            <h2>${s.name}</h2>
-            <div class="detail-row"><strong>Art:</strong> ${s.type}</div>
-            <div class="detail-row"><strong>Ort:</strong> ${s.place}</div>
-            <div class="detail-row"><strong>Intensität:</strong> ${s.intensity}</div>
-            <div class="detail-row"><strong>Vibe:</strong> ${s.vibe}</div>
-            <button class="primary" data-fav="${s.id}">${isFav ? '💔 Aus Favoriten entfernen' : '❤️ Zu Favoriten hinzufügen'}</button>
-            <button class="secondary" data-next="results" style="margin-top:8px;width:100%">Zurück zu Ergebnisse</button>
-          </div>
-        `;
-      }
-
-      function renderFavorites() {
-        const list = sports.filter((s) => state.favorites.includes(s.id));
-        return `
-          <h2>Favoriten</h2>
-          <div class="sub">${list.length} gespeichert</div>
-          ${list.length ? list.map((s) => sportCard(s)).join('') : '<div class="card"><div class="card-body"><div class="card-sub">Noch keine Favoriten.</div></div></div>'}
+          <div class="sp"></div>
+          <div class="grid">${alternatives.map(cardHtml).join('')}</div>
         `;
       }
 
       function render() {
-        let html = '';
-        if (state.tab === 'onboarding') html = renderOnboarding();
-        if (state.tab === 'discover') html = renderDiscover();
-        if (state.tab === 'results') html = renderResults();
-        if (state.tab === 'profile') html = renderProfile();
-        if (state.tab === 'favorites') html = renderFavorites();
-        if (state.tab === 'detail') html = renderDetail(state.selected);
-        content.innerHTML = html;
+        if (state.view === 'quiz') renderQuiz();
+        if (state.view === 'directory') renderDirectory();
+        if (state.view === 'result') renderResult();
       }
 
       document.body.addEventListener('click', (e) => {
         const t = e.target;
         if (!(t instanceof HTMLElement)) return;
-        const tabBtn = t.closest('[data-tab]');
-        if (tabBtn) return setTab(tabBtn.dataset.tab);
-        if (t.dataset.next) return setTab(t.dataset.next);
-        if (t.dataset.mood) {
-          state.mood = t.dataset.mood;
-          return render();
+        const tab = t.closest('[data-view]');
+        if (tab) return setView(tab.dataset.view);
+
+        if (t.dataset.answer) {
+          const key = QUESTIONS[state.step].key;
+          state.answers[key] = t.dataset.answer;
+          return renderQuiz();
         }
-        if (t.dataset.open) {
-          state.selected = t.dataset.open;
-          return setTab('detail');
+        if (t.dataset.back && state.step > 0) {
+          state.step -= 1;
+          return renderQuiz();
         }
-        if (t.dataset.fav) return toggleFav(t.dataset.fav);
-        if (t.dataset.clear) {
-          state.favorites = [];
-          localStorage.removeItem('sportmate_favs');
-          showToast('Favoriten gelöscht');
-          return render();
+        if (t.dataset.next) {
+          const key = QUESTIONS[state.step].key;
+          if (!state.answers[key]) return;
+          if (state.step < QUESTIONS.length - 1) {
+            state.step += 1;
+            return renderQuiz();
+          }
+          calculateResult();
+          return setView('result');
         }
+        if (t.dataset.gotoquiz) {
+          state.step = 0;
+          state.answers = {};
+          state.result = null;
+          return setView('quiz');
+        }
+        if (t.dataset.gotodir) return setView('directory');
       });
 
-      document.getElementById('closeBtn').addEventListener('click', () => showToast('Schließen (Demo)'));
-      document.getElementById('infoBtn').addEventListener('click', () => showToast('SportMate: Hobby first'));
-      document.getElementById('saveBtn').addEventListener('click', () => showToast('Design gespeichert (Demo)'));
-      document.getElementById('shareBtn').addEventListener('click', () => showToast('Link geteilt (Demo)'));
-
-      setTab('onboarding');
+      setView('quiz');
     </script>
   </body>
 </html>
