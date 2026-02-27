@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SportMate Mock</title>
+    <style>
+      :root {
+        --bg: #000;
+        --white: #f4f4f5;
+        --pill: #0b0b0f;
+        --pill-border: #34343b;
+        --blue: #2f6bff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        color: #fff;
+      }
+      .stage {
+        width: min(980px, 100%);
+        margin: 0 auto;
+        min-height: 100vh;
+        padding: 110px 28px 60px;
+      }
+
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .btn-round,
+      .btn-pill {
+        border: 2px solid var(--pill-border);
+        background: var(--pill);
+        color: #fff;
+        font-weight: 700;
+      }
+      .btn-round {
+        width: 96px;
+        height: 96px;
+        border-radius: 999px;
+        font-size: 54px;
+        line-height: 1;
+        display: grid;
+        place-items: center;
+      }
+      .btn-pill {
+        height: 96px;
+        border-radius: 48px;
+        padding: 0 38px;
+        font-size: 54px;
+        letter-spacing: -0.03em;
+      }
+      .btn-share {
+        background: #f3f4f6;
+        color: #000;
+        border-color: #f3f4f6;
+        width: 330px;
+        text-align: left;
+        padding-left: 44px;
+        line-height: 0.95;
+      }
+
+      .showcase {
+        margin-top: 210px;
+        background: #ececec;
+        border-radius: 0;
+        padding: 54px 34px;
+      }
+      .phones {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 22px;
+      }
+
+      .phone {
+        background: #111827;
+        border-radius: 34px;
+        padding: 9px;
+        box-shadow: 0 14px 24px rgba(0, 0, 0, 0.25);
+      }
+      .screen {
+        background: #fff;
+        border-radius: 28px;
+        min-height: 350px;
+        overflow: hidden;
+        color: #0f172a;
+      }
+      .status {
+        height: 22px;
+        font-size: 9px;
+        padding: 8px 12px 0;
+        opacity: 0.75;
+      }
+      .app-title {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        color: #3f3f46;
+        margin-top: 2px;
+      }
+      .content {
+        padding: 12px;
+      }
+      .headline {
+        font-weight: 800;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      .chip-row {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .chip {
+        font-size: 9px;
+        font-weight: 700;
+        padding: 4px 7px;
+        border-radius: 999px;
+        border: 1px solid #d4d4d8;
+        background: #f4f4f5;
+      }
+      .chip.active {
+        background: #dbeafe;
+        color: #1d4ed8;
+        border-color: #93c5fd;
+      }
+      .pear {
+        width: 58px;
+        height: 58px;
+        border-radius: 22px;
+        margin: 8px auto;
+        background: radial-gradient(circle at 40% 30%, #e9f99d, #84cc16 70%);
+      }
+      .cta {
+        margin-top: 10px;
+        background: var(--blue);
+        color: #fff;
+        text-align: center;
+        border-radius: 8px;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 7px;
+      }
+
+      .card {
+        margin-bottom: 8px;
+        border-radius: 9px;
+        overflow: hidden;
+        background: #f8fafc;
+      }
+      .thumb {
+        height: 62px;
+        background: linear-gradient(120deg, #93c5fd, #22d3ee);
+      }
+      .meta {
+        padding: 6px;
+        font-size: 10px;
+        font-weight: 700;
+      }
+      .sub {
+        margin-top: 2px;
+        font-size: 9px;
+        color: #64748b;
+        font-weight: 600;
+      }
+
+      .result-box {
+        border: 1px solid #bfdbfe;
+        background: #eff6ff;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .result-image {
+        height: 68px;
+        background: linear-gradient(120deg, #60a5fa, #fde68a);
+      }
+      .result-body {
+        padding: 8px;
+      }
+      .bullet {
+        font-size: 9px;
+        margin: 3px 0;
+      }
+
+      .hero {
+        height: 126px;
+        background: linear-gradient(140deg, #60a5fa, #1d4ed8);
+      }
+      .detail-row {
+        border-top: 1px solid #e5e7eb;
+        padding: 8px 0;
+        font-size: 10px;
+      }
+
+      @media (max-width: 860px) {
+        .top-actions { gap: 10px; }
+        .btn-round { width: 62px; height: 62px; font-size: 34px; }
+        .btn-pill { height: 62px; padding: 0 20px; font-size: 32px; }
+        .btn-share { width: 200px; }
+        .showcase { margin-top: 120px; padding: 20px; }
+        .phones { grid-template-columns: 1fr 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="stage">
+      <section class="top-actions" aria-label="Mock Aktionen">
+        <button class="btn-round" aria-label="Schließen">×</button>
+        <button class="btn-round" aria-label="Info">ⓘ</button>
+        <button class="btn-pill">Speichern</button>
+        <button class="btn-pill btn-share">Weiter-<br />geben</button>
+      </section>
+
+      <section class="showcase" aria-label="SportMate Vorschau">
+        <div class="phones">
+          <article class="phone">
+            <div class="screen">
+              <div class="status">9:41</div>
+              <div class="app-title">Sport Mate</div>
+              <div class="content">
+                <div class="headline">Finde dein perfektes Hobby!</div>
+                <div class="chip-row">
+                  <span class="chip active">Social</span>
+                  <span class="chip">Spass</span>
+                  <span class="chip">Ruhig</span>
+                  <span class="chip">Natur</span>
+                </div>
+                <div class="pear"></div>
+                <div class="cta">Weiter</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="phone">
+            <div class="screen">
+              <div class="status">9:41</div>
+              <div class="app-title">Entdecke Ideen für dich</div>
+              <div class="content">
+                <div class="chip-row"><span class="chip active">Für dich</span><span class="chip">Beliebt</span><span class="chip">Low impact</span></div>
+                <div class="card"><div class="thumb"></div><div class="meta">Volleyball<div class="sub">Team Sport</div></div></div>
+                <div class="card"><div class="thumb" style="background:linear-gradient(120deg,#86efac,#4ade80)"></div><div class="meta">Fussball<div class="sub">Team Sport</div></div></div>
+                <div class="card"><div class="thumb" style="background:linear-gradient(120deg,#fdba74,#fb7185)"></div><div class="meta">Tanzen<div class="sub">Dynamisch</div></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="phone">
+            <div class="screen">
+              <div class="status">9:41</div>
+              <div class="app-title">Deine Ergebnisse</div>
+              <div class="content">
+                <div class="headline" style="font-size:12px">Du passt perfekt zu:</div>
+                <div class="result-box">
+                  <div class="result-image"></div>
+                  <div class="result-body">
+                    <div style="font-size:13px;font-weight:800">Beachvolleyball</div>
+                    <div class="bullet">• Tolles Teamwork</div>
+                    <div class="bullet">• Frische Luft</div>
+                    <div class="bullet">• Perfekt im Sommer</div>
+                    <div class="cta" style="margin-top:6px">Details ansehen</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="phone">
+            <div class="screen">
+              <div class="hero"></div>
+              <div class="content">
+                <div class="headline">Beachvolleyball</div>
+                <div class="detail-row"><strong>Art:</strong> Team Sport</div>
+                <div class="detail-row"><strong>Ort:</strong> Draussen</div>
+                <div class="detail-row"><strong>Intensität:</strong> Moderat</div>
+                <div class="detail-row"><strong>Vibe:</strong> Cooles Teamgefühl</div>
+                <div class="cta">❤️ Zu Favoriten hinzufügen</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
