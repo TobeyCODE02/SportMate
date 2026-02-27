@@ -3,287 +3,491 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SportMate Mock</title>
+    <title>SportMate</title>
     <style>
       :root {
         --bg: #000;
-        --white: #f4f4f5;
-        --pill: #0b0b0f;
-        --pill-border: #34343b;
+        --panel: #0b0b0f;
+        --panel-border: #34343b;
+        --phone: #111827;
+        --white: #fff;
+        --text: #0f172a;
+        --muted: #64748b;
         --blue: #2f6bff;
+        --blue-2: #1f56dc;
       }
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        background: var(--bg);
         font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
         color: #fff;
       }
       .stage {
-        width: min(980px, 100%);
-        margin: 0 auto;
         min-height: 100vh;
-        padding: 110px 28px 60px;
+        padding: 40px 20px 30px;
+        max-width: 1100px;
+        margin: 0 auto;
       }
-
       .top-actions {
         display: flex;
+        gap: 12px;
         align-items: center;
-        gap: 18px;
+        justify-content: center;
+        margin-bottom: 36px;
       }
-      .btn-round,
-      .btn-pill {
-        border: 2px solid var(--pill-border);
-        background: var(--pill);
+      .ui-btn {
+        border: 2px solid var(--panel-border);
+        background: var(--panel);
         color: #fff;
         font-weight: 700;
       }
-      .btn-round {
-        width: 96px;
-        height: 96px;
+      .ui-btn.circle {
+        width: 62px;
+        height: 62px;
         border-radius: 999px;
-        font-size: 54px;
-        line-height: 1;
-        display: grid;
-        place-items: center;
+        font-size: 28px;
       }
-      .btn-pill {
-        height: 96px;
-        border-radius: 48px;
-        padding: 0 38px;
-        font-size: 54px;
-        letter-spacing: -0.03em;
+      .ui-btn.pill {
+        height: 62px;
+        border-radius: 999px;
+        padding: 0 24px;
+        font-size: 24px;
       }
-      .btn-share {
+      .ui-btn.white {
         background: #f3f4f6;
-        color: #000;
         border-color: #f3f4f6;
-        width: 330px;
-        text-align: left;
-        padding-left: 44px;
-        line-height: 0.95;
+        color: #000;
       }
 
-      .showcase {
-        margin-top: 210px;
+      .phone-wrap {
         background: #ececec;
-        border-radius: 0;
-        padding: 54px 34px;
+        border-radius: 14px;
+        padding: 30px 20px;
       }
-      .phones {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 22px;
-      }
-
       .phone {
-        background: #111827;
-        border-radius: 34px;
-        padding: 9px;
-        box-shadow: 0 14px 24px rgba(0, 0, 0, 0.25);
+        width: min(390px, 100%);
+        margin: 0 auto;
+        border-radius: 36px;
+        background: var(--phone);
+        padding: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
       }
       .screen {
         background: #fff;
+        min-height: 780px;
         border-radius: 28px;
-        min-height: 350px;
         overflow: hidden;
-        color: #0f172a;
+        color: var(--text);
+        position: relative;
       }
       .status {
-        height: 22px;
-        font-size: 9px;
-        padding: 8px 12px 0;
-        opacity: 0.75;
+        padding: 7px 14px 0;
+        font-size: 10px;
+        color: #475569;
       }
       .app-title {
         text-align: center;
-        font-size: 14px;
-        font-weight: 700;
-        color: #3f3f46;
-        margin-top: 2px;
+        font-weight: 800;
+        font-size: 18px;
+        color: #334155;
+        margin: 4px 0 10px;
       }
       .content {
-        padding: 12px;
+        padding: 0 14px 88px;
       }
-      .headline {
-        font-weight: 800;
-        font-size: 14px;
-        margin-bottom: 10px;
+      h2 {
+        margin: 0;
+        font-size: 24px;
+        letter-spacing: -0.02em;
       }
-      .chip-row {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-        margin-bottom: 10px;
-      }
+      .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+      .chip-row { display: flex; gap: 7px; flex-wrap: wrap; margin: 10px 0; }
       .chip {
-        font-size: 9px;
-        font-weight: 700;
-        padding: 4px 7px;
         border-radius: 999px;
-        border: 1px solid #d4d4d8;
-        background: #f4f4f5;
-      }
-      .chip.active {
-        background: #dbeafe;
-        color: #1d4ed8;
-        border-color: #93c5fd;
-      }
-      .pear {
-        width: 58px;
-        height: 58px;
-        border-radius: 22px;
-        margin: 8px auto;
-        background: radial-gradient(circle at 40% 30%, #e9f99d, #84cc16 70%);
-      }
-      .cta {
-        margin-top: 10px;
-        background: var(--blue);
-        color: #fff;
-        text-align: center;
-        border-radius: 8px;
-        font-size: 10px;
+        border: 1px solid #cbd5e1;
+        background: #f8fafc;
+        padding: 6px 10px;
+        font-size: 12px;
         font-weight: 700;
-        padding: 7px;
+      }
+      .chip.active { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
+
+      .hero-pear {
+        width: 86px;
+        height: 86px;
+        margin: 16px auto;
+        border-radius: 28px;
+        background: radial-gradient(circle at 35% 30%, #ecfccb, #84cc16 70%);
+      }
+      .primary {
+        width: 100%;
+        border: 0;
+        border-radius: 10px;
+        background: linear-gradient(180deg, var(--blue), var(--blue-2));
+        color: #fff;
+        font-weight: 800;
+        padding: 11px;
+        cursor: pointer;
+      }
+      .secondary {
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        background: #fff;
+        color: #334155;
+        font-weight: 700;
+        padding: 10px;
+        cursor: pointer;
       }
 
       .card {
-        margin-bottom: 8px;
-        border-radius: 9px;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        margin-top: 10px;
         overflow: hidden;
-        background: #f8fafc;
+        background: #fff;
       }
       .thumb {
-        height: 62px;
-        background: linear-gradient(120deg, #93c5fd, #22d3ee);
+        height: 104px;
+        background-size: cover;
+        background-position: center;
       }
-      .meta {
-        padding: 6px;
-        font-size: 10px;
-        font-weight: 700;
-      }
-      .sub {
-        margin-top: 2px;
-        font-size: 9px;
-        color: #64748b;
-        font-weight: 600;
-      }
+      .card-body { padding: 10px; }
+      .card-title { font-weight: 800; font-size: 16px; }
+      .card-sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+      .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
       .result-box {
+        border-radius: 12px;
         border: 1px solid #bfdbfe;
         background: #eff6ff;
-        border-radius: 10px;
         overflow: hidden;
       }
-      .result-image {
-        height: 68px;
-        background: linear-gradient(120deg, #60a5fa, #fde68a);
+      .result-head {
+        font-weight: 800;
+        font-size: 22px;
+        color: #1d4ed8;
+        margin-bottom: 4px;
       }
-      .result-body {
-        padding: 8px;
-      }
-      .bullet {
-        font-size: 9px;
-        margin: 3px 0;
-      }
+      ul { margin: 8px 0 10px 18px; padding: 0; font-size: 13px; }
+      li { margin: 4px 0; }
 
-      .hero {
-        height: 126px;
-        background: linear-gradient(140deg, #60a5fa, #1d4ed8);
-      }
-      .detail-row {
-        border-top: 1px solid #e5e7eb;
-        padding: 8px 0;
-        font-size: 10px;
-      }
+      .detail-hero { height: 180px; background-size: cover; background-position: center; }
+      .detail-row { border-top: 1px solid #e2e8f0; padding: 10px 0; font-size: 13px; }
 
-      @media (max-width: 860px) {
-        .top-actions { gap: 10px; }
-        .btn-round { width: 62px; height: 62px; font-size: 34px; }
-        .btn-pill { height: 62px; padding: 0 20px; font-size: 32px; }
-        .btn-share { width: 200px; }
-        .showcase { margin-top: 120px; padding: 20px; }
-        .phones { grid-template-columns: 1fr 1fr; }
+      .tabbar {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        display: flex;
+        padding: 7px;
+        gap: 4px;
+      }
+      .tab {
+        flex: 1;
+        border: 0;
+        border-radius: 12px;
+        background: transparent;
+        color: #64748b;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 8px 2px;
+        cursor: pointer;
+      }
+      .tab.active { background: #dbeafe; color: #1d4ed8; }
+
+      .toast {
+        position: absolute;
+        top: 16px;
+        left: 14px;
+        right: 14px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: #0f172a;
+        color: #fff;
+        font-size: 13px;
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: .2s;
+        pointer-events: none;
+      }
+      .toast.show { opacity: 1; transform: translateY(0); }
+
+      @media (max-width: 700px) {
+        .ui-btn.circle { width: 48px; height: 48px; font-size: 22px; }
+        .ui-btn.pill { height: 48px; padding: 0 16px; font-size: 20px; }
       }
     </style>
   </head>
   <body>
     <main class="stage">
-      <section class="top-actions" aria-label="Mock Aktionen">
-        <button class="btn-round" aria-label="Schließen">×</button>
-        <button class="btn-round" aria-label="Info">ⓘ</button>
-        <button class="btn-pill">Speichern</button>
-        <button class="btn-pill btn-share">Weiter-<br />geben</button>
+      <section class="top-actions">
+        <button class="ui-btn circle" id="closeBtn">×</button>
+        <button class="ui-btn circle" id="infoBtn">ⓘ</button>
+        <button class="ui-btn pill" id="saveBtn">Speichern</button>
+        <button class="ui-btn pill white" id="shareBtn">Weiter-<br />geben</button>
       </section>
 
-      <section class="showcase" aria-label="SportMate Vorschau">
-        <div class="phones">
-          <article class="phone">
-            <div class="screen">
-              <div class="status">9:41</div>
-              <div class="app-title">Sport Mate</div>
-              <div class="content">
-                <div class="headline">Finde dein perfektes Hobby!</div>
-                <div class="chip-row">
-                  <span class="chip active">Social</span>
-                  <span class="chip">Spass</span>
-                  <span class="chip">Ruhig</span>
-                  <span class="chip">Natur</span>
-                </div>
-                <div class="pear"></div>
-                <div class="cta">Weiter</div>
-              </div>
-            </div>
-          </article>
-
-          <article class="phone">
-            <div class="screen">
-              <div class="status">9:41</div>
-              <div class="app-title">Entdecke Ideen für dich</div>
-              <div class="content">
-                <div class="chip-row"><span class="chip active">Für dich</span><span class="chip">Beliebt</span><span class="chip">Low impact</span></div>
-                <div class="card"><div class="thumb"></div><div class="meta">Volleyball<div class="sub">Team Sport</div></div></div>
-                <div class="card"><div class="thumb" style="background:linear-gradient(120deg,#86efac,#4ade80)"></div><div class="meta">Fussball<div class="sub">Team Sport</div></div></div>
-                <div class="card"><div class="thumb" style="background:linear-gradient(120deg,#fdba74,#fb7185)"></div><div class="meta">Tanzen<div class="sub">Dynamisch</div></div></div>
-              </div>
-            </div>
-          </article>
-
-          <article class="phone">
-            <div class="screen">
-              <div class="status">9:41</div>
-              <div class="app-title">Deine Ergebnisse</div>
-              <div class="content">
-                <div class="headline" style="font-size:12px">Du passt perfekt zu:</div>
-                <div class="result-box">
-                  <div class="result-image"></div>
-                  <div class="result-body">
-                    <div style="font-size:13px;font-weight:800">Beachvolleyball</div>
-                    <div class="bullet">• Tolles Teamwork</div>
-                    <div class="bullet">• Frische Luft</div>
-                    <div class="bullet">• Perfekt im Sommer</div>
-                    <div class="cta" style="margin-top:6px">Details ansehen</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="phone">
-            <div class="screen">
-              <div class="hero"></div>
-              <div class="content">
-                <div class="headline">Beachvolleyball</div>
-                <div class="detail-row"><strong>Art:</strong> Team Sport</div>
-                <div class="detail-row"><strong>Ort:</strong> Draussen</div>
-                <div class="detail-row"><strong>Intensität:</strong> Moderat</div>
-                <div class="detail-row"><strong>Vibe:</strong> Cooles Teamgefühl</div>
-                <div class="cta">❤️ Zu Favoriten hinzufügen</div>
-              </div>
-            </div>
-          </article>
+      <section class="phone-wrap">
+        <div class="phone">
+          <div class="screen" id="screen">
+            <div class="toast" id="toast"></div>
+            <div class="status">9:41</div>
+            <div class="app-title">Sport Mate</div>
+            <div class="content" id="content"></div>
+            <nav class="tabbar">
+              <button class="tab active" data-tab="onboarding">Entdecken</button>
+              <button class="tab" data-tab="discover">Favoriten</button>
+              <button class="tab" data-tab="results">Quiz</button>
+              <button class="tab" data-tab="profile">Profil</button>
+            </nav>
+          </div>
         </div>
       </section>
     </main>
+
+    <script>
+      const sports = [
+        {
+          id: 'beach',
+          name: 'Beachvolleyball',
+          type: 'Team Sport',
+          place: 'Draussen',
+          intensity: 'Moderat',
+          vibe: 'Cooles Teamgefühl',
+          summary: ['Tolles Teamwork', 'Fit & aktiv an der frischen Luft', 'Perfekt im Sommer'],
+          tags: ['Social', 'Natur'],
+          mood: ['social', 'spass'],
+          image: 'linear-gradient(120deg,#60a5fa,#fde68a)'
+        },
+        {
+          id: 'soccer',
+          name: 'Fussball',
+          type: 'Team Sport',
+          place: 'Draussen',
+          intensity: 'Hoch',
+          vibe: 'Dynamisch',
+          summary: ['Sehr sozial', 'Schneller Einstieg im Verein', 'Action pur'],
+          tags: ['Social', 'Spass'],
+          mood: ['social', 'spass'],
+          image: 'linear-gradient(120deg,#86efac,#22c55e)'
+        },
+        {
+          id: 'dance',
+          name: 'Tanzen',
+          type: 'Dynamisch',
+          place: 'Indoor',
+          intensity: 'Moderat',
+          vibe: 'Rhythmisch',
+          summary: ['Kreativ und sozial', 'Perfekt für Anfänger', 'Gute Community'],
+          tags: ['Spass'],
+          mood: ['spass'],
+          image: 'linear-gradient(120deg,#fdba74,#fb7185)'
+        },
+        {
+          id: 'kayak',
+          name: 'Kajak',
+          type: 'Outdoor',
+          place: 'Wasser',
+          intensity: 'Mittel',
+          vibe: 'Naturfokus',
+          summary: ['Entspanntes Tempo', 'Natur erleben', 'Sehr abwechslungsreich'],
+          tags: ['Natur', 'Ruhig'],
+          mood: ['natur', 'ruhig'],
+          image: 'linear-gradient(120deg,#38bdf8,#0ea5e9)'
+        }
+      ];
+
+      const state = {
+        tab: 'onboarding',
+        mood: 'social',
+        favorites: JSON.parse(localStorage.getItem('sportmate_favs') || '[]'),
+        selected: sports[0].id,
+      };
+
+      const content = document.getElementById('content');
+      const toast = document.getElementById('toast');
+      const tabs = Array.from(document.querySelectorAll('.tab'));
+
+      function showToast(text) {
+        toast.textContent = text;
+        toast.classList.add('show');
+        window.clearTimeout(showToast.t);
+        showToast.t = window.setTimeout(() => toast.classList.remove('show'), 1600);
+      }
+
+      function setTab(tab) {
+        state.tab = tab;
+        tabs.forEach((btn) => btn.classList.toggle('active', btn.dataset.tab === tab));
+        render();
+      }
+
+      function toggleFav(id) {
+        if (state.favorites.includes(id)) {
+          state.favorites = state.favorites.filter((x) => x !== id);
+          showToast('Aus Favoriten entfernt');
+        } else {
+          state.favorites.push(id);
+          showToast('Zu Favoriten hinzugefügt');
+        }
+        localStorage.setItem('sportmate_favs', JSON.stringify(state.favorites));
+        render();
+      }
+
+      function sportCard(s, withAction = true) {
+        const isFav = state.favorites.includes(s.id);
+        return `
+          <article class="card" data-open="${s.id}">
+            <div class="thumb" style="background:${s.image}"></div>
+            <div class="card-body">
+              <div class="card-title">${s.name}</div>
+              <div class="card-sub">${s.type}</div>
+              ${withAction ? `<div style="display:flex;gap:8px;margin-top:8px"><button class="secondary" data-open="${s.id}" style="flex:1">Details</button><button class="secondary" data-fav="${s.id}">${isFav ? '❤️' : '🤍'}</button></div>` : ''}
+            </div>
+          </article>
+        `;
+      }
+
+      function renderOnboarding() {
+        return `
+          <h2>Finde dein perfektes Hobby!</h2>
+          <div class="sub">Was ist deine aktuelle Stimmung?</div>
+          <div class="chip-row">
+            ${['social', 'spass', 'ruhig', 'natur'].map((m) => `<button class="chip ${state.mood === m ? 'active' : ''}" data-mood="${m}">${m[0].toUpperCase() + m.slice(1)}</button>`).join('')}
+          </div>
+          <div class="sub">Bereit? Los geht's!</div>
+          <div class="hero-pear"></div>
+          <button class="primary" data-next="discover">Weiter</button>
+        `;
+      }
+
+      function renderDiscover() {
+        const list = sports.filter((s) => s.mood.includes(state.mood));
+        const items = (list.length ? list : sports).map((s) => sportCard(s)).join('');
+        return `
+          <h2>Entdecke Ideen für dich</h2>
+          <div class="chip-row">
+            <span class="chip active">Für dich</span>
+            <span class="chip">Beliebt</span>
+            <span class="chip">Low impact</span>
+          </div>
+          ${items}
+        `;
+      }
+
+      function renderResults() {
+        const top = sports.find((s) => s.id === state.selected) || sports[0];
+        const others = sports.filter((s) => s.id !== top.id).slice(0, 2);
+        return `
+          <h2>Deine Ergebnisse</h2>
+          <div class="sub">Du passt perfekt zu:</div>
+          <div class="result-box" style="margin-top:10px">
+            <div class="thumb" style="background:${top.image};height:120px"></div>
+            <div class="card-body">
+              <div class="result-head">${top.name}</div>
+              <ul>${top.summary.map((x) => `<li>${x}</li>`).join('')}</ul>
+              <button class="primary" data-open="${top.id}">Details ansehen</button>
+            </div>
+          </div>
+          <div class="sub" style="margin-top:12px">Weitere Empfehlungen:</div>
+          <div class="grid2">${others.map((s) => sportCard(s, false)).join('')}</div>
+        `;
+      }
+
+      function renderProfile() {
+        const favCount = state.favorites.length;
+        return `
+          <h2>Profil</h2>
+          <div class="sub">SportMate ist dein Hobby-Finder – kein Fitness-Tracker.</div>
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Favoriten</div>
+              <div class="card-sub">${favCount} gespeichert</div>
+              <button class="secondary" style="margin-top:10px;width:100%" data-clear="1">Favoriten leeren</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Aktive Stimmung</div>
+              <div class="chip-row" style="margin-top:8px"><span class="chip active">${state.mood}</span></div>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderDetail(id) {
+        const s = sports.find((x) => x.id === id);
+        if (!s) return renderDiscover();
+        const isFav = state.favorites.includes(s.id);
+        return `
+          <div class="detail-hero" style="background:${s.image}"></div>
+          <div style="padding-top:12px">
+            <h2>${s.name}</h2>
+            <div class="detail-row"><strong>Art:</strong> ${s.type}</div>
+            <div class="detail-row"><strong>Ort:</strong> ${s.place}</div>
+            <div class="detail-row"><strong>Intensität:</strong> ${s.intensity}</div>
+            <div class="detail-row"><strong>Vibe:</strong> ${s.vibe}</div>
+            <button class="primary" data-fav="${s.id}">${isFav ? '💔 Aus Favoriten entfernen' : '❤️ Zu Favoriten hinzufügen'}</button>
+            <button class="secondary" data-next="results" style="margin-top:8px;width:100%">Zurück zu Ergebnisse</button>
+          </div>
+        `;
+      }
+
+      function renderFavorites() {
+        const list = sports.filter((s) => state.favorites.includes(s.id));
+        return `
+          <h2>Favoriten</h2>
+          <div class="sub">${list.length} gespeichert</div>
+          ${list.length ? list.map((s) => sportCard(s)).join('') : '<div class="card"><div class="card-body"><div class="card-sub">Noch keine Favoriten.</div></div></div>'}
+        `;
+      }
+
+      function render() {
+        let html = '';
+        if (state.tab === 'onboarding') html = renderOnboarding();
+        if (state.tab === 'discover') html = renderDiscover();
+        if (state.tab === 'results') html = renderResults();
+        if (state.tab === 'profile') html = renderProfile();
+        if (state.tab === 'favorites') html = renderFavorites();
+        if (state.tab === 'detail') html = renderDetail(state.selected);
+        content.innerHTML = html;
+      }
+
+      document.body.addEventListener('click', (e) => {
+        const t = e.target;
+        if (!(t instanceof HTMLElement)) return;
+        const tabBtn = t.closest('[data-tab]');
+        if (tabBtn) return setTab(tabBtn.dataset.tab);
+        if (t.dataset.next) return setTab(t.dataset.next);
+        if (t.dataset.mood) {
+          state.mood = t.dataset.mood;
+          return render();
+        }
+        if (t.dataset.open) {
+          state.selected = t.dataset.open;
+          return setTab('detail');
+        }
+        if (t.dataset.fav) return toggleFav(t.dataset.fav);
+        if (t.dataset.clear) {
+          state.favorites = [];
+          localStorage.removeItem('sportmate_favs');
+          showToast('Favoriten gelöscht');
+          return render();
+        }
+      });
+
+      document.getElementById('closeBtn').addEventListener('click', () => showToast('Schließen (Demo)'));
+      document.getElementById('infoBtn').addEventListener('click', () => showToast('SportMate: Hobby first'));
+      document.getElementById('saveBtn').addEventListener('click', () => showToast('Design gespeichert (Demo)'));
+      document.getElementById('shareBtn').addEventListener('click', () => showToast('Link geteilt (Demo)'));
+
+      setTab('onboarding');
+    </script>
   </body>
 </html>
