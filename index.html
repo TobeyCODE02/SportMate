@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SportMate</title>
+    <style>
+      :root{--bg:#000;--panel:#0b0b0f;--line:#2f3440;--blue:#2f6bff;--text:#0f172a;--muted:#64748b;--surface:#ececec}
+      *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:#fff}
+      .app{min-height:100vh}
+      .top{padding:22px 16px 18px;display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+      .act{border:2px solid #3b3f48;background:var(--panel);color:#fff;border-radius:999px;height:52px;padding:0 18px;font-weight:800;font-size:28px;cursor:pointer}
+      .act.circle{width:52px;padding:0;display:grid;place-items:center}
+      .act.white{background:#f3f4f6;color:#000;border-color:#f3f4f6;font-size:20px;line-height:1}
+      .shell{background:var(--surface);min-height:calc(100vh - 96px);border-radius:22px 22px 0 0;padding:14px}
+      .screen{max-width:420px;margin:0 auto;background:#fff;border-radius:26px;min-height:78vh;overflow:hidden;position:relative;box-shadow:0 18px 30px rgba(0,0,0,.16)}
+      .status{font-size:10px;color:#475569;padding:8px 14px 2px}.brand{text-align:center;font-weight:800;color:#334155}
+      .inner{padding:12px 14px 88px;color:var(--text)}
+      .tabs{position:absolute;left:10px;right:10px;bottom:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:6px;display:flex;gap:4px}
+      .tab{flex:1;border:0;background:transparent;border-radius:11px;padding:8px 2px;font-size:11px;font-weight:700;color:#64748b;cursor:pointer}
+      .tab.active{background:#dbeafe;color:#1d4ed8}
+      .card{border:1px solid #e2e8f0;border-radius:14px;padding:12px;background:#fff}.muted{color:var(--muted);font-size:13px}
+      h1,h2,h3{margin:0;letter-spacing:-.02em}.hero{background:linear-gradient(145deg,#2f6bff,#14b8a6);border-radius:16px;padding:16px;color:#fff}
+      .btn{border:0;border-radius:11px;padding:10px 12px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(180deg,#2f6bff,#2457d9);color:#fff}.ghost{background:#fff;border:1px solid #dbe2f0;color:#334155}
+      .row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.sp{height:10px}
+      .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.chip{border:1px solid #dbe2f0;border-radius:999px;background:#fff;padding:7px 10px;font-size:12px;font-weight:700;cursor:pointer}.chip.on{background:#dbeafe;border-color:#93c5fd;color:#1d4ed8}
+      .progress{height:9px;border-radius:999px;background:#eaf0ff;border:1px solid #dbe2f0;overflow:hidden;margin-top:10px}.progress>div{height:100%;background:linear-gradient(90deg,#2f6bff,#14b8a6)}
+      .search{width:100%;border:1px solid #dbe2f0;border-radius:11px;padding:10px 12px;font-weight:700}
+      .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sport{border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;background:#fff}.thumb{height:110px;background:#e2e8f0}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.body{padding:9px}.name{font-weight:800;font-size:14px}.tags{font-size:11px;color:#64748b;margin-top:2px}
+      .resultHero{border:1px solid #e2e8f0;border-radius:12px;overflow:hidden}.resultHero .thumb{height:170px}
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="top">
+        <button class="act circle" id="closeBtn">×</button>
+        <button class="act circle" id="infoBtn">ⓘ</button>
+        <button class="act" id="saveBtn" style="font-size:18px">Speichern</button>
+        <button class="act white" id="shareBtn">Weiter-<br>geben</button>
+      </div>
+      <div class="shell">
+        <div class="screen">
+          <div class="status">9:41</div>
+          <div class="brand">Sport Mate</div>
+          <div class="inner">
+            <section id="homeView"></section>
+            <section id="quizView" hidden></section>
+            <section id="directoryView" hidden></section>
+            <section id="resultView" hidden></section>
+          </div>
+          <nav class="tabs">
+            <button class="tab active" data-view="home">Start</button>
+            <button class="tab" data-view="quiz">Quiz</button>
+            <button class="tab" data-view="directory">Sportarten</button>
+            <button class="tab" data-view="result">Ergebnis</button>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const SPORTS=[
+        ['Yoga','yoga class'],['Pilates','pilates'],['Tai Chi','tai chi'],['Qigong','qigong'],['Spazieren','walking'],['Nordic Walking','nordic walking'],['Wandern','hiking'],['Schwimmen','swimming'],['Aquajogging','aqua jogging'],['SUP','stand up paddling'],['Kajak','kayaking'],['Rudern','rowing'],['Segeln','sailing'],['Tauchen','scuba diving'],['Tanzen','dance class'],['Zumba','zumba class'],['Salsa','salsa dance'],['Ballett','ballet class'],['Fussball','football'],['Basketball','basketball'],['Volleyball','volleyball'],['Beachvolleyball','beach volleyball'],['Handball','handball'],['Tennis','tennis'],['Badminton','badminton'],['Squash','squash'],['Tischtennis','table tennis'],['Padel','padel tennis'],['Radfahren','cycling'],['Mountainbike','mountain biking'],['Spinning','spinning class'],['Joggen','running'],['Trailrunning','trail running'],['Krafttraining','gym training'],['HIIT','hiit workout'],['Boxen','boxing'],['Judo','judo'],['Karate','karate'],['Bouldern','bouldering'],['Klettern Halle','indoor climbing'],['Klettern Outdoor','rock climbing'],['Skifahren','skiing'],['Snowboard','snowboarding'],['Langlauf','cross country skiing'],['Eislaufen','ice skating'],['Bowling','bowling'],['Billard','billiards'],['Darts','darts'],['Bogenschiessen','archery'],['Golf','golf'],['Inline Skating','inline skating'],['Skateboard','skateboard'],['Parkour','parkour'],['Slackline','slackline'],['Ultimate Frisbee','ultimate frisbee'],['Disc Golf','disc golf'],['Fechten','fencing'],['Geocaching','geocaching'],['Reiten','horse riding'],['Surfen','surfing']
+      ].map((x,i)=>({
+        id:i+1,
+        name:x[0],
+        query:x[1],
+        tags:inferTags(x[0],x[1]),
+        image:`https://source.unsplash.com/featured/640x420?${encodeURIComponent(x[1]+' sport')}`
+      }));
+
+      function inferTags(name,q){
+        const s=(name+' '+q).toLowerCase();
+        return [
+          /swim|surf|padd|kayak|segel|tauch|aqua/.test(s)?'wasser':'',
+          /hik|trail|geocach|reiten|golf|outdoor|ski|snow|walk|mountain/.test(s)?'natur':'',
+          /fuss|basket|volley|hand|team|judo|zumba|salsa|ultimate/.test(s)?'team':'solo',
+          /hiit|trail|parkour|box|squash|mountainbike/.test(s)?'high':/yoga|pilates|qigong|tai|golf|darts|billard/.test(s)?'low':'medium',
+        ].filter(Boolean);
+      }
+
+      const QUESTIONS=[
+        {q:'Was suchst du am meisten?',k:'goal',o:[['Entspannung','low'],['Spaß','team'],['Challenge','high'],['Natur','natur']]},
+        {q:'Wo lieber?',k:'place',o:[['Outdoor','natur'],['Indoor','indoor'],['Egal','any']]},
+        {q:'Solo oder Team?',k:'group',o:[['Solo','solo'],['Team','team'],['Beides','any']]},
+        {q:'Intensität?',k:'intensity',o:[['Low','low'],['Medium','medium'],['High','high']]},
+        {q:'Wasser-Sport?',k:'water',o:[['Ja','wasser'],['Egal','any'],['Nein','no_wasser']]},
+        {q:'Budget?',k:'budget',o:[['Niedrig','low'],['Mittel','medium'],['Hoch ok','high']]},
+        {q:'Ausrüstung?',k:'gear',o:[['Keine','easy'],['Basis','medium'],['Spezial ok','pro']]},
+        {q:'Wie oft pro Woche?',k:'time',o:[['1x','low'],['2-3x','medium'],['4x+','high']]},
+        {q:'Gesundheitsfokus?',k:'health',o:[['Schonend','low'],['Normal','any'],['Action ok','high']]},
+        {q:'Wie schnell starten?',k:'start',o:[['Sofort einfach','easy'],['Lernen ok','pro'],['Egal','any']]},
+      ];
+
+      const st={view:'home',step:0,answers:{},result:null,query:''};
+      const views={home:homeView,quiz:quizView,directory:directoryView,result:resultView};
+      const tabs=[...document.querySelectorAll('.tab')];
+
+      const imageUrl=(q)=>`https://source.unsplash.com/featured/640x420?${encodeURIComponent(q+' sport action photo')}`;
+      const REAL_IMAGE_OVERRIDES={
+        'Fussball':'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=80',
+        'Yoga':'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80',
+        'Schwimmen':'https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=1200&q=80',
+        'Tennis':'https://images.unsplash.com/photo-1595435742656-5272d0b3fa1d?auto=format&fit=crop&w=1200&q=80',
+        'Basketball':'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80',
+        'Radfahren':'https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=1200&q=80',
+      };
+      function imageForSport(s){ return s.image || REAL_IMAGE_OVERRIDES[s.name] || imageUrl(s.query); }
+
+      function setView(v){st.view=v;Object.entries(views).forEach(([k,el])=>el.hidden=k!==v);tabs.forEach(b=>b.classList.toggle('active',b.dataset.view===v));render();}
+
+      function score(s){
+        const a=st.answers; let n=0; const has=t=>s.tags.includes(t);
+        Object.values(a).forEach(v=>{ if(v==='any') return; if(v==='no_wasser'){ if(has('wasser')) n-=4; return; } if(has(v)) n+=4; });
+        return n;
+      }
+            function calc(){ const r=SPORTS.map(s=>({...s,score:score(s)})).sort((a,b)=>b.score-a.score); st.result=r[0]; }
+
+      function card(s){return `<article class="sport"><div class="thumb"><img src="${imageForSport(s)}" alt="${s.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80'"></div><div class="body"><div class="name">${s.name}</div><div class="tags">${s.tags.join(' · ')}</div></div></article>`;}
+
+      function renderHome(){
+        const sample=SPORTS.find(s=>s.name==='Fussball')||SPORTS[0];
+        homeView.innerHTML=`<div class="hero"><h1>Finde dein perfektes Hobby!</h1><div style="margin-top:6px;opacity:.92">SportMate hilft dir ohne Fitness-Druck die passende Sportart zu finden.</div><div class="sp"></div><div class="row"><button class="btn primary" data-go="quiz">Quiz starten</button><button class="btn ghost" data-go="directory">Alle Sportarten</button></div></div><div class="sp"></div><div class="card"><h3>So funktioniert's</h3><div class="muted" style="margin-top:6px">• 10 Fragen beantworten<br>• Persönliches Ergebnis erhalten<br>• Alle 60 Sportarten haben ein eigenes Bild</div></div><div class="sp"></div><div class="card"><div class="row"><h3>Beispiel mit echtem Bild</h3><span class="muted">${sample.name}</span></div><div class="sp"></div><div class="sport"><div class="thumb"><img src="${imageForSport(sample)}" alt="${sample.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80'"></div><div class="body"><div class="name">${sample.name}</div><div class="tags">${sample.tags.join(' · ')}</div></div></div></div>`
+      }
+
+      function renderQuiz(){const q=QUESTIONS[st.step];const p=((st.step+1)/QUESTIONS.length)*100;quizView.innerHTML=`<div class="card"><div class="row"><h2>Quiz · Frage ${st.step+1}/10</h2><span class="muted">Hobby-Match</span></div><div class="muted" style="margin-top:4px">${q.q}</div><div class="progress"><div style="width:${p}%"></div></div><div class="chips">${q.o.map(([l,v])=>`<button class="chip ${st.answers[q.k]===v?'on':''}" data-a="${v}">${l}</button>`).join('')}</div><div class="sp"></div><div class="row"><button class="btn ghost" ${st.step===0?'disabled':''} data-back="1">Zurück</button><button class="btn primary" data-next="1">${st.step===9?'Ergebnis':'Weiter'}</button></div></div>`}
+
+      function renderDir(){const q=st.query.toLowerCase().trim();const list=SPORTS.filter(s=>!q||s.name.toLowerCase().includes(q)||s.tags.join(' ').includes(q));directoryView.innerHTML=`<div class="card"><div class="row"><h2>Sportarten Verzeichnis</h2><span class="muted">${list.length} von ${SPORTS.length}</span></div><div class="sp"></div><input class="search" value="${st.query}" placeholder="Suche Sportart / Tag" /></div><div class="sp"></div><div class="grid">${list.map(card).join('')}</div>`;directoryView.querySelector('.search').addEventListener('input',e=>{st.query=e.target.value;renderDir();});}
+
+      function renderResult(){if(!st.result){resultView.innerHTML=`<div class="card"><h2>Noch kein Ergebnis</h2><div class="muted" style="margin-top:6px">Bitte zuerst das Quiz abschließen.</div><div class="sp"></div><button class="btn primary" data-go="quiz">Zum Quiz</button></div>`;return;} const best=st.result; const alt=SPORTS.filter(s=>s.id!==best.id).sort((a,b)=>score(b)-score(a)).slice(0,4); resultView.innerHTML=`<div class="card"><h2>Dein bestes Match</h2><div class="muted" style="margin-top:4px">Ermittelt aus 10 Fragen</div><div class="sp"></div><div class="resultHero"><div class="thumb"><img src="${imageForSport(best)}" alt="${best.name}" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80'"></div></div><div class="sp"></div><h3>${best.name}</h3><div class="muted">${best.tags.join(' · ')}</div><div class="sp"></div><div class="row"><button class="btn ghost" data-restart="1">Quiz neu</button><button class="btn primary" data-go="directory">Verzeichnis</button></div></div><div class="sp"></div><div class="grid">${alt.map(card).join('')}</div>`;}
+
+      function render(){ if(st.view==='home') renderHome(); if(st.view==='quiz') renderQuiz(); if(st.view==='directory') renderDir(); if(st.view==='result') renderResult(); }
+
+      document.body.addEventListener('click',e=>{
+        const t=e.target; if(!(t instanceof HTMLElement)) return;
+        const tb=t.closest('[data-view]'); if(tb) return setView(tb.dataset.view);
+        if(t.dataset.go) return setView(t.dataset.go);
+        if(t.dataset.a){ st.answers[QUESTIONS[st.step].k]=t.dataset.a; return renderQuiz(); }
+        if(t.dataset.back && st.step>0){ st.step--; return renderQuiz(); }
+        if(t.dataset.next){ const k=QUESTIONS[st.step].k; if(!st.answers[k]) return; if(st.step<9){st.step++; return renderQuiz();} calc(); return setView('result'); }
+        if(t.dataset.restart){ st.step=0; st.answers={}; st.result=null; return setView('quiz'); }
+      });
+
+      closeBtn.onclick=()=>alert('Schließen (Demo)'); infoBtn.onclick=()=>alert('SportMate: Hobby first'); saveBtn.onclick=()=>alert('Gespeichert (Demo)'); shareBtn.onclick=()=>alert('Geteilt (Demo)');
+      setView('home');
+    </script>
+  </body>
+</html>
