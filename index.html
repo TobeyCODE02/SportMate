@@ -85,6 +85,57 @@
         ['Fechten','fencing', ['challenge','medium','team','indoor']], ['Geocaching','geocaching', ['natur','low','team','outdoor']], ['Reiten','horse riding', ['natur','medium','solo','outdoor']], ['Surfen','surfing', ['wasser','high','solo','outdoor']]
       ].map((x, i) => ({ id: i + 1, name: x[0], query: x[1], tags: x[2] }));
 
+      const EMOJI_MAP = [
+        ['wasser', '🏄'], ['natur', '🌿'], ['team', '🤝'], ['solo', '🧘'],
+        ['challenge', '⚡'], ['spass', '🎉'], ['ruhig', '🌙'], ['kreativ', '🎨'], ['mindful', '🧠']
+      ];
+
+      function pickEmoji(tags) {
+        for (const [tag, emoji] of EMOJI_MAP) {
+          if (tags.includes(tag)) return emoji;
+        }
+        return '🏅';
+      }
+
+      function hashColor(name) {
+        let h = 0;
+        for (let i = 0; i < name.length; i += 1) h = (h * 31 + name.charCodeAt(i)) % 360;
+        return h;
+      }
+
+      function cartoonImage(name, tags) {
+        const hue = hashColor(name);
+        const hue2 = (hue + 45) % 360;
+        const emoji = pickEmoji(tags);
+        const shortName = name.length > 14 ? `${name.slice(0, 12)}…` : name;
+        const svg = `
+          <svg xmlns='http://www.w3.org/2000/svg' width='640' height='420' viewBox='0 0 640 420'>
+            <defs>
+              <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+                <stop offset='0%' stop-color='hsl(${hue} 80% 78%)'/>
+                <stop offset='100%' stop-color='hsl(${hue2} 80% 72%)'/>
+              </linearGradient>
+            </defs>
+            <rect width='640' height='420' fill='url(#g)'/>
+            <g opacity='0.28'>
+              <circle cx='95' cy='95' r='86' fill='white'/>
+              <circle cx='560' cy='320' r='120' fill='white'/>
+            </g>
+            <rect x='26' y='24' width='214' height='48' rx='24' fill='rgba(255,255,255,0.88)'/>
+            <text x='42' y='55' font-family='Inter, Arial, sans-serif' font-size='24' font-weight='700' fill='#0f172a'>SportMate</text>
+            <text x='320' y='228' text-anchor='middle' font-size='118'>${emoji}</text>
+            <rect x='36' y='338' width='568' height='54' rx='16' fill='rgba(17,24,39,0.72)'/>
+            <text x='58' y='372' font-family='Inter, Arial, sans-serif' font-size='29' font-weight='800' fill='white'>${shortName}</text>
+          </svg>
+        `;
+        return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+      }
+
+      const SPORTS_WITH_IMAGES = SPORTS.map((sport) => ({
+        ...sport,
+        image: cartoonImage(sport.name, sport.tags),
+      }));
+
       const QUESTIONS = [
         { q: 'Was suchst du am meisten?', key: 'goal', opts: [['Entspannung','ruhig'], ['Spaß','spass'], ['Challenge','challenge'], ['Kreativ','kreativ']] },
         { q: 'Wo möchtest du lieber trainieren?', key: 'place', opts: [['Outdoor','outdoor'], ['Indoor','indoor'], ['Egal','either']] },
@@ -110,8 +161,6 @@
       const directoryView = document.getElementById('directoryView');
       const resultView = document.getElementById('resultView');
       const tabs = [...document.querySelectorAll('.tab')];
-
-      const imageUrl = (q) => `https://source.unsplash.com/featured/640x420?${encodeURIComponent(q + ' sport')}`;
 
       function setView(v) {
         state.view = v;
@@ -142,7 +191,7 @@
       }
 
       function calculateResult() {
-        const ranked = SPORTS.map((s) => ({ ...s, score: scoreSport(s) })).sort((a, b) => b.score - a.score);
+        const ranked = SPORTS_WITH_IMAGES.map((s) => ({ ...s, score: scoreSport(s) })).sort((a, b) => b.score - a.score);
         state.result = ranked[0];
       }
 
@@ -167,12 +216,12 @@
       }
 
       function cardHtml(s) {
-        return `<article class="sport"><div class="thumb"><img src="${imageUrl(s.query)}" alt="${s.name}" loading="lazy" onerror="this.remove()"></div><div class="body"><div class="name">${s.name}</div><div class="tags">${s.tags.join(' · ')}</div></div></article>`;
+        return `<article class="sport"><div class="thumb"><img src="${s.image}" alt="${s.name}" loading="lazy"></div><div class="body"><div class="name">${s.name}</div><div class="tags">${s.tags.join(' · ')}</div></div></article>`;
       }
 
       function renderDirectory() {
         const q = state.query.trim().toLowerCase();
-        const list = SPORTS.filter((s) => !q || s.name.toLowerCase().includes(q) || s.tags.join(' ').includes(q));
+        const list = SPORTS_WITH_IMAGES.filter((s) => !q || s.name.toLowerCase().includes(q) || s.tags.join(' ').includes(q));
         directoryView.innerHTML = `
           <div class="card">
             <div class="row"><h2>Sportarten Verzeichnis</h2><span class="muted">${list.length} von ${SPORTS.length}</span></div>
@@ -191,13 +240,13 @@
           return;
         }
         const best = state.result;
-        const alternatives = SPORTS.filter((s) => s.id !== best.id).sort((a, b) => scoreSport(b) - scoreSport(a)).slice(0, 6);
+        const alternatives = SPORTS_WITH_IMAGES.filter((s) => s.id !== best.id).sort((a, b) => scoreSport(b) - scoreSport(a)).slice(0, 6);
         resultView.innerHTML = `
           <div class="card">
             <h2>Dein bestes Match</h2>
             <div class="muted" style="margin-top:4px">Basierend auf 10 Fragen</div>
             <div class="sp"></div>
-            <div class="resultHero"><div class="thumb"><img src="${imageUrl(best.query)}" alt="${best.name}" onerror="this.remove()"></div></div>
+            <div class="resultHero"><div class="thumb"><img src="${best.image}" alt="${best.name}"></div></div>
             <div class="sp"></div>
             <h3>${best.name}</h3>
             <div class="muted">Tags: ${best.tags.join(' · ')}</div>
