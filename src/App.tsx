@@ -223,7 +223,7 @@ function App() {
   const [health, setHealth] = useState<HealthFilters>(defaultHealthFilters);
   const [favIds, setFavIds] = useState<string[]>(() => ls.get('sportmate_favs', []));
   const [toasts, setToasts] = useState<Array<{ id: string; title: string }>>([]);
-  const timer = useRef<number>();
+  const timer = useRef<number | null>(null);
 
   useEffect(() => ls.set('sportmate_theme', theme), [theme]);
   useEffect(() => ls.set('sportmate_favs', favIds), [favIds]);
@@ -245,9 +245,15 @@ function App() {
 
   const showToast = (title: string) => {
     setToasts((t) => [{ id: uid(), title }, ...t].slice(0, 2));
-    if (timer.current) window.clearTimeout(timer.current);
+    if (timer.current !== null) window.clearTimeout(timer.current);
     timer.current = window.setTimeout(() => setToasts([]), 1800);
   };
+
+  useEffect(() => {
+    return () => {
+      if (timer.current !== null) window.clearTimeout(timer.current);
+    };
+  }, []);
 
   const toggleFav = (id: string) => setFavIds((prev) => {
     const set = new Set(prev);
