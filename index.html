@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowly – Welcome Mock</title>
+  <style>
+    :root{--bg:#eceff4;--frame:#1f2430;--screen:#fafbff;--text:#22314f;--muted:#707b91;--blue:#5f8ff5;--blue2:#4c7de9}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--text)}
+
+    .phone{width:min(94vw,284px);background:var(--frame);border-radius:clamp(28px,8vw,36px);padding:5px;box-shadow:0 18px 46px rgba(15,23,42,.34)}
+    .screen{width:100%;aspect-ratio:284/574;background:var(--screen);border-radius:clamp(24px,7vw,32px);overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.25)}
+
+    .status{height:28px;padding:7px 14px 0;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;color:#111827}
+    .island{position:absolute;top:4px;left:50%;transform:translateX(-50%);width:106px;height:24px;border-radius:16px;background:#0b1018}
+
+    .wrap{padding:12px 14px 0;text-align:center}
+    .brand{margin-top:2px;font-size:clamp(34px,10.8vw,42px);line-height:1;font-weight:800;letter-spacing:-.02em;color:#2d3b60;font-style:italic;font-family:"Trebuchet MS",Inter,system-ui,sans-serif}
+    .headline{margin:16px 0 0;font-size:clamp(34px,10.8vw,42px);line-height:1.14;font-weight:800;letter-spacing:-.012em}
+    .sub{margin-top:10px;font-size:clamp(22px,7.4vw,30px);line-height:1.15;color:var(--muted);font-weight:500}
+
+    .segment{margin:16px auto 0;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #d8deea;border-radius:20px;overflow:hidden;background:#f2f4f8}
+    .segment span{padding:10px 0;font-size:clamp(18px,6.5vw,24px);line-height:1;font-weight:500;color:#4a556b;border-right:1px solid #d8deea}
+    .segment span:last-child{border-right:0}
+    .segment .on{background:linear-gradient(180deg,var(--blue),var(--blue2));color:#fff;font-weight:700}
+
+    .hero{position:relative;height:202px;margin-top:8px}
+    .blob{position:absolute;border-radius:50%;opacity:.46}
+    .b1{width:88px;height:58px;left:-8px;top:28px;background:#f6c5d4}
+    .b2{width:92px;height:64px;right:-6px;top:24px;background:#d3e8ff}
+    .b3{width:102px;height:72px;right:2px;bottom:22px;background:#cceee2}
+    .b4{width:86px;height:62px;left:8px;bottom:28px;background:#efd8f7}
+    .b5{width:166px;height:34px;left:50%;bottom:12px;transform:translateX(-50%);background:#f2daca;opacity:.92}
+
+    .bubble{position:absolute;font-size:30px;opacity:.72;z-index:1}
+    .heart{left:30px;top:38px}.dumbbell{right:28px;top:34px}.lotus{left:25px;bottom:40px}.mountain{right:28px;bottom:36px}
+
+    .pear{position:absolute;left:50%;top:10px;transform:translateX(-50%);width:140px;height:170px;filter:drop-shadow(0 10px 12px rgba(31,41,55,.24));z-index:2}
+
+    .ready{margin-top:-2px;font-size:clamp(28px,9.6vw,38px);font-weight:800;letter-spacing:-.01em}
+    .cta{margin-top:10px;width:100%;border:0;border-radius:18px;padding:12px 12px;font-size:clamp(28px,9.2vw,36px);font-weight:700;color:#fff;background:linear-gradient(90deg,var(--blue),var(--blue2));box-shadow:0 10px 22px rgba(79,130,241,.35)}
+
+    .down{position:absolute;left:50%;bottom:56px;transform:translateX(-50%);width:56px;height:56px;border-radius:50%;border:2px solid #d7dce8;background:#fff;display:grid;place-items:center;font-size:28px;color:#2e3544;box-shadow:0 8px 18px rgba(15,23,42,.12)}
+
+    .tabbar{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #d9dfeb;height:70px;display:grid;grid-template-columns:repeat(4,1fr);padding:6px 10px}
+    .tab{display:grid;justify-items:center;align-content:center;gap:1px;font-size:11px;color:#8a93a4;font-weight:600}
+    .tab .ico{font-size:19px;line-height:1}.tab.on{color:#4f82f1}
+    @media (max-height:620px){body{padding:8px}.phone{width:min(96vw,260px)}}
+  </style>
+</head>
+<body>
+  <main class="phone" aria-label="Flowly Welcome Preview">
+    <section class="screen">
+      <div class="island"></div>
+      <div class="status"><span>9:41</span><span>◔◔ ◼︎</span></div>
+      <div class="wrap">
+        <div class="brand">Flowly</div>
+        <h1 class="headline">Willkommen<br>bei Flowly!</h1>
+        <div class="sub">Wie fühlst du dich aktuell?</div>
+        <div class="segment" aria-label="Stimmung wählen"><span class="on">Social</span><span>Ruhe</span><span>Natur</span><span>Fit</span></div>
+
+        <div class="hero" aria-hidden="true">
+          <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><div class="blob b5"></div>
+          <div class="bubble heart">💗</div><div class="bubble dumbbell">🏋️‍♂️</div><div class="bubble lotus">🪷</div><div class="bubble mountain">⛰️</div>
+          <svg class="pear" viewBox="0 0 160 190" xmlns="http://www.w3.org/2000/svg" aria-label="Flowly Birne">
+            <defs>
+              <radialGradient id="pearBody" cx="42%" cy="28%" r="64%">
+                <stop offset="0" stop-color="#f7f7b5"/>
+                <stop offset="0.52" stop-color="#c6e56d"/>
+                <stop offset="1" stop-color="#5f9f47"/>
+              </radialGradient>
+              <radialGradient id="pearLight" cx="28%" cy="26%" r="42%">
+                <stop offset="0" stop-color="#ffffff" stop-opacity=".78"/>
+                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <path d="M90 23c3-11 12-18 23-20" stroke="#6e4a3d" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <ellipse cx="72" cy="33" rx="18" ry="10" fill="#84bf43" transform="rotate(-10 72 33)"/>
+            <path d="M80 40c-30 0-51 23-51 56 0 31 20 58 51 58s51-27 51-58c0-33-21-56-51-56z" fill="url(#pearBody)"/>
+            <ellipse cx="63" cy="68" rx="19" ry="12" fill="url(#pearLight)"/>
+            <ellipse cx="62" cy="96" rx="4.1" ry="4.8" fill="#1f2937"/>
+            <ellipse cx="96" cy="96" rx="4.1" ry="4.8" fill="#1f2937"/>
+            <circle cx="63" cy="95" r="1" fill="#fff"/><circle cx="97" cy="95" r="1" fill="#fff"/>
+            <path d="M67 112c3 4 7 6 12.8 6 5.8 0 9.8-2 12.8-6" stroke="#1f2937" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <ellipse cx="53" cy="107" rx="4.5" ry="2.5" fill="#f5c6d5" opacity=".62"/>
+            <ellipse cx="106" cy="107" rx="4.5" ry="2.5" fill="#f5c6d5" opacity=".62"/>
+          </svg>
+        </div>
+
+        <div class="ready">Bereit! Los gehts!</div>
+        <button class="cta">Los geht's!</button>
+      </div>
+
+      <div class="down">↓</div>
+      <nav class="tabbar" aria-label="Bottom Navigation">
+        <div class="tab on"><div class="ico">🏠</div><div>Start</div></div>
+        <div class="tab"><div class="ico">🩶</div><div>Entdecken</div></div>
+        <div class="tab"><div class="ico">❤️</div><div>Favoriten</div></div>
+        <div class="tab"><div class="ico">👤</div><div>Profil</div></div>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>
